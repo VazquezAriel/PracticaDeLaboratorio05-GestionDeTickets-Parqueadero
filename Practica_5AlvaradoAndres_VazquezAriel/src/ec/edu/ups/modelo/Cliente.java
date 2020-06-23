@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.modelo;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -17,7 +18,8 @@ public class Cliente {
     private String nombre;
     private String direccion;
     private String telefono;
-
+    private List<Vehiculo> vehiculos;
+    
     public Cliente() {
     }
 
@@ -59,6 +61,15 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public List<Vehiculo> getVehiculos() {
+        return vehiculos;
+    }
+
+    public void setVehiculos(List<Vehiculo> vehiculos) {
+        this.vehiculos = vehiculos;
+    }
+    
 
     @Override
     public int hashCode() {

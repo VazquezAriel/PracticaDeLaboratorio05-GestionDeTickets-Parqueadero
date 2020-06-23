@@ -5,37 +5,37 @@
  */
 package ec.edu.ups.idao;
 
-import ec.edu.ups.modelo.Cliente;
+import ec.edu.ups.modelo.Ticket;
 import java.util.List;
 
 /**
  *
  * @author HI andres
  */
-public class ClienteDAO implements IClienteDAO {
+public class TicketDAO implements ITicketDAO {
 
     @Override
-    public void create(Cliente cliente) {
+    public void create(Ticket ticket) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Cliente read(String cedula) {
+    public Ticket read(int numero) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Cliente cliente) {
+    public void update(Ticket ticket) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void delete(Cliente cliente) {
+    public void delete(Ticket ticket) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Cliente> findAll() {
+    public List<Ticket> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

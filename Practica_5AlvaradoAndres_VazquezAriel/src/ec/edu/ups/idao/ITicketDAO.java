@@ -5,17 +5,17 @@
  */
 package ec.edu.ups.idao;
 
-import ec.edu.ups.modelo.Cliente;
+import ec.edu.ups.modelo.Ticket;
 import java.util.List;
 
 /**
  *
  * @author HI andres
  */
-public interface IClienteDAO {
-   public void create(Cliente cliente);
-    public Cliente read(String cedula);
-    public void update(Cliente cliente);
-    public void delete(Cliente cliente);
-    public List<Cliente> findAll(); 
+public interface ITicketDAO {
+    public void create(Ticket ticket );
+    public Ticket read(int numero);
+    public void update(Ticket ticket);
+    public void delete(Ticket ticket);
+    public List<Ticket> findAll(); 
 }

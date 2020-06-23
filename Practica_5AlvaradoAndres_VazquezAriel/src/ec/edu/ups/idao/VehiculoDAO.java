@@ -5,37 +5,37 @@
  */
 package ec.edu.ups.idao;
 
-import ec.edu.ups.modelo.Cliente;
+import ec.edu.ups.modelo.Vehiculo;
 import java.util.List;
 
 /**
  *
  * @author HI andres
  */
-public class ClienteDAO implements IClienteDAO {
+public class VehiculoDAO implements IVehiculoDAO {
 
     @Override
-    public void create(Cliente cliente) {
+    public void create(Vehiculo vehiculo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Cliente read(String cedula) {
+    public Vehiculo read(String placa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Cliente cliente) {
+    public void update(Vehiculo vehiculo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void delete(Cliente cliente) {
+    public void delete(Vehiculo vehiculo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Cliente> findAll() {
+    public List<Vehiculo> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
