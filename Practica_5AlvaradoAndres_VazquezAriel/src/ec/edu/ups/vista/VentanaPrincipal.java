@@ -5,17 +5,26 @@
  */
 package ec.edu.ups.vista;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 /**
  *
- * @author HI andres
+ * @author ariel
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
+    private Locale localizacion;
+    private ResourceBundle mensajes;
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
+        
+        localizacion = Locale.getDefault();
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
+        cambiarIdioma();
     }
 
     /**
@@ -27,84 +36,62 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        desktopPane = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
-        openMenuItem = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
-        saveAsMenuItem = new javax.swing.JMenuItem();
-        exitMenuItem = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        contentMenuItem = new javax.swing.JMenuItem();
-        aboutMenuItem = new javax.swing.JMenuItem();
+        jMenuInicio = new javax.swing.JMenu();
+        jMenuItemRegistrarEntrada = new javax.swing.JMenuItem();
+        jMenuItemRegistrarSalida = new javax.swing.JMenuItem();
+        jMenuItemListar = new javax.swing.JMenuItem();
+        jMenuItemSalir = new javax.swing.JMenuItem();
+        jMenuIdioma = new javax.swing.JMenu();
+        jMenuItemEspañol = new javax.swing.JMenuItem();
+        jMenuItemIngles = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        fileMenu.setMnemonic('f');
-        fileMenu.setText("File");
+        jPanel1.setBackground(new java.awt.Color(115, 189, 158));
 
-        openMenuItem.setMnemonic('o');
-        openMenuItem.setText("Open");
-        fileMenu.add(openMenuItem);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 950, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 624, Short.MAX_VALUE)
+        );
 
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Save");
-        fileMenu.add(saveMenuItem);
+        jMenuInicio.setMnemonic('f');
 
-        saveAsMenuItem.setMnemonic('a');
-        saveAsMenuItem.setText("Save As ...");
-        saveAsMenuItem.setDisplayedMnemonicIndex(5);
-        fileMenu.add(saveAsMenuItem);
+        jMenuItemRegistrarEntrada.setMnemonic('o');
+        jMenuInicio.add(jMenuItemRegistrarEntrada);
 
-        exitMenuItem.setMnemonic('x');
-        exitMenuItem.setText("Exit");
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemRegistrarSalida.setMnemonic('s');
+        jMenuInicio.add(jMenuItemRegistrarSalida);
+
+        jMenuItemListar.setMnemonic('a');
+        jMenuInicio.add(jMenuItemListar);
+
+        jMenuItemSalir.setMnemonic('x');
+        jMenuItemSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitMenuItemActionPerformed(evt);
+                jMenuItemSalirActionPerformed(evt);
             }
         });
-        fileMenu.add(exitMenuItem);
+        jMenuInicio.add(jMenuItemSalir);
 
-        menuBar.add(fileMenu);
+        menuBar.add(jMenuInicio);
 
-        editMenu.setMnemonic('e');
-        editMenu.setText("Edit");
+        jMenuIdioma.setMnemonic('e');
 
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Cut");
-        editMenu.add(cutMenuItem);
+        jMenuItemEspañol.setMnemonic('t');
+        jMenuIdioma.add(jMenuItemEspañol);
 
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Copy");
-        editMenu.add(copyMenuItem);
+        jMenuItemIngles.setMnemonic('y');
+        jMenuIdioma.add(jMenuItemIngles);
 
-        pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Paste");
-        editMenu.add(pasteMenuItem);
-
-        deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Delete");
-        editMenu.add(deleteMenuItem);
-
-        menuBar.add(editMenu);
-
-        helpMenu.setMnemonic('h');
-        helpMenu.setText("Help");
-
-        contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Contents");
-        helpMenu.add(contentMenuItem);
-
-        aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("About");
-        helpMenu.add(aboutMenuItem);
-
-        menuBar.add(helpMenu);
+        menuBar.add(jMenuIdioma);
 
         setJMenuBar(menuBar);
 
@@ -112,19 +99,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+    private void jMenuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalirActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
+    }//GEN-LAST:event_jMenuItemSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,23 +148,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void cambiarIdioma() {
+        jMenuInicio.setText(mensajes.getString("inicio"));
+        jMenuIdioma.setText(mensajes.getString("idioma"));
+        jMenuItemEspañol.setText(mensajes.getString("español"));
+        jMenuItemIngles.setText(mensajes.getString("ingles"));
+        jMenuItemListar.setText(mensajes.getString("listar"));
+        jMenuItemRegistrarEntrada.setText(mensajes.getString("registroE"));
+        jMenuItemRegistrarSalida.setText(mensajes.getString("registroS"));
+        jMenuItemSalir.setText(mensajes.getString("salir"));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem contentMenuItem;
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JMenuItem deleteMenuItem;
-    private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenu editMenu;
-    private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenu jMenuIdioma;
+    private javax.swing.JMenu jMenuInicio;
+    private javax.swing.JMenuItem jMenuItemEspañol;
+    private javax.swing.JMenuItem jMenuItemIngles;
+    private javax.swing.JMenuItem jMenuItemListar;
+    private javax.swing.JMenuItem jMenuItemRegistrarEntrada;
+    private javax.swing.JMenuItem jMenuItemRegistrarSalida;
+    private javax.swing.JMenuItem jMenuItemSalir;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JMenuItem pasteMenuItem;
-    private javax.swing.JMenuItem saveAsMenuItem;
-    private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
 }
