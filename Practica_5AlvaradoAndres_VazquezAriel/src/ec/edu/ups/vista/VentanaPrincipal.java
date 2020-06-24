@@ -22,7 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         
-        localizacion = Locale.getDefault();
+        localizacion = new Locale("es","EC");
         mensajes = ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
         cambiarIdioma();
     }
@@ -39,6 +39,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btnRegistroEntrada = new javax.swing.JButton();
+        btnRegistroSalida = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         jMenuInicio = new javax.swing.JMenu();
         jMenuItemIniciarSecion = new javax.swing.JMenuItem();
@@ -56,27 +60,57 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Parqueadero UPS");
+        setPreferredSize(new java.awt.Dimension(808, 700));
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(48, 102, 109));
 
         jLabel1.setFont(new java.awt.Font("Georgia", 1, 48)); // NOI18N
         jLabel1.setText("Parqueadero UPS");
 
+        btnRegistroEntrada.setText("Registro de Entrada");
+
+        btnRegistroSalida.setText("Registro de Salida");
+
+        jButton4.setText("jButton4");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagen/imagenMenu2.PNG.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(206, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegistroSalida)
+                    .addComponent(btnRegistroEntrada)
+                    .addComponent(jButton4))
+                .addGap(157, 157, 157))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(162, 162, 162)
                 .addComponent(jLabel1)
-                .addGap(205, 205, 205))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(499, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(btnRegistroEntrada)
+                        .addGap(72, 72, 72)
+                        .addComponent(btnRegistroSalida)
+                        .addGap(93, 93, 93)
+                        .addComponent(jButton4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -87,6 +121,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuInicio.setText("Inicio");
         jMenuInicio.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
 
+        jMenuItemIniciarSecion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagen/iniciar-sesion.png"))); // NOI18N
         jMenuItemIniciarSecion.setText("Iniciar Sesion");
         jMenuInicio.add(jMenuItemIniciarSecion);
 
@@ -100,14 +135,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuRegistros.setFocusTraversalPolicyProvider(true);
         jMenuRegistros.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
 
+        jMenuItemClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagen/hotel (1).png"))); // NOI18N
         jMenuItemClientes.setMnemonic('o');
         jMenuItemClientes.setText("Clientes");
         jMenuRegistros.add(jMenuItemClientes);
 
+        jMenuItemVehiculos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagen/registro.png"))); // NOI18N
         jMenuItemVehiculos.setMnemonic('s');
         jMenuItemVehiculos.setText("Vehiculos");
         jMenuRegistros.add(jMenuItemVehiculos);
 
+        jMenuItemTickets.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagen/boleto-de-validacion.png"))); // NOI18N
         jMenuItemTickets.setMnemonic('a');
         jMenuItemTickets.setText("Tickets");
         jMenuRegistros.add(jMenuItemTickets);
@@ -203,8 +241,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegistroEntrada;
+    private javax.swing.JButton btnRegistroSalida;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenuAjustes;
     private javax.swing.JMenu jMenuIdioma;
     private javax.swing.JMenu jMenuInicio;
