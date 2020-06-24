@@ -13,7 +13,9 @@ import java.util.ResourceBundle;
  * @author ariel
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-
+    private VentanaRegistroDeEntrada registroDeEntrada;
+    private VentanaRegistroDeSalida registroSalida;
+    private VentanaIniciarSesion iniciarSesion;
     private Locale localizacion;
     private ResourceBundle mensajes;
     /**
@@ -21,10 +23,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
+        //instancia ventanas
+        registroDeEntrada = new VentanaRegistroDeEntrada();
+        registroSalida= new VentanaRegistroDeSalida();
+        iniciarSesion= new VentanaIniciarSesion();
+        //agragado a la ventana principal
         
         localizacion = new Locale("es","EC");
         mensajes = ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
         cambiarIdioma();
+        
     }
 
     /**
@@ -70,6 +78,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Parqueadero UPS");
 
         btnRegistroEntrada.setText("Registro de Entrada");
+        btnRegistroEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroEntradaActionPerformed(evt);
+            }
+        });
 
         btnRegistroSalida.setText("Registro de Salida");
 
@@ -123,6 +136,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenuItemIniciarSecion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagen/iniciar-sesion.png"))); // NOI18N
         jMenuItemIniciarSecion.setText("Iniciar Sesion");
+        jMenuItemIniciarSecion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemIniciarSecionActionPerformed(evt);
+            }
+        });
         jMenuInicio.add(jMenuItemIniciarSecion);
 
         jMenuItemCerrar.setText("Cerrar");
@@ -188,6 +206,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jMenuItemCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCambiarColorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemCambiarColorActionPerformed
+
+    private void btnRegistroEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroEntradaActionPerformed
+ 
+ 
+    }//GEN-LAST:event_btnRegistroEntradaActionPerformed
+
+    private void jMenuItemIniciarSecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemIniciarSecionActionPerformed
+    
+    }//GEN-LAST:event_jMenuItemIniciarSecionActionPerformed
 
     /**
      * @param args the command line arguments

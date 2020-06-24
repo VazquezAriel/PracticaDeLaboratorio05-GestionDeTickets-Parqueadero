@@ -9,12 +9,12 @@ package ec.edu.ups.vista;
  *
  * @author HI andres
  */
-public class RegistroDeEntrada extends javax.swing.JInternalFrame {
+public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form RegistroDeEntrada
+     * Creates new form VentanaRegistroDeEntrada
      */
-    public RegistroDeEntrada() {
+    public VentanaRegistroDeEntrada() {
         initComponents();
     }
 

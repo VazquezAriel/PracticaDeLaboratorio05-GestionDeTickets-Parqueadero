@@ -9,12 +9,12 @@ package ec.edu.ups.vista;
  *
  * @author HI andres
  */
-public class RegistroSalida extends javax.swing.JInternalFrame {
+public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form RegistroSalida
+     * Creates new form VentanaIniciarSesion
      */
-    public RegistroSalida() {
+    public VentanaIniciarSesion() {
         initComponents();
     }
 
