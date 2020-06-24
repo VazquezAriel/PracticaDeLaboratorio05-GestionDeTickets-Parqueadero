@@ -36,6 +36,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -52,6 +53,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItemIngles = new javax.swing.JMenuItem();
         jMenuAjustes = new javax.swing.JMenu();
         jMenuItemCambiarColor = new javax.swing.JMenuItem();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -194,6 +197,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
     
     public void cambiarIdioma() {
+        System.out.println("Cambio de idioma ejecutado correctamente");
         jMenuAjustes.setText(mensajes.getString("ajustes"));
         jMenuIdioma.setText(mensajes.getString("idioma"));
         jMenuInicio.setText(mensajes.getString("inicio"));
@@ -209,6 +213,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenuAjustes;
