@@ -5,10 +5,22 @@
  */
 package ec.edu.ups.controlador;
 
+import ec.edu.ups.idao.ITicketDAO;
+import ec.edu.ups.modelo.Ticket;
+
 /**
  *
  * @author HI andres
  */
 public class ControladorTicket {
+    
+    private ITicketDAO ticketDAO;
+    private Ticket ticket;
+
+    public ControladorTicket(ITicketDAO ticketDAO) {
+        this.ticketDAO = ticketDAO;
+    }
+    
+    
     
 }

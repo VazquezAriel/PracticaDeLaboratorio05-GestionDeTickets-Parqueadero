@@ -5,10 +5,22 @@
  */
 package ec.edu.ups.controlador;
 
+import ec.edu.ups.idao.IClienteDAO;
+import ec.edu.ups.modelo.Cliente;
+
 /**
  *
  * @author HI andres
  */
 public class ControladorCliente {
     
+    private IClienteDAO clienteDAO;
+    private Cliente cliente;
+
+    public ControladorCliente(IClienteDAO clienteDAO) {
+        this.clienteDAO = clienteDAO;
+    }
+    
+    //Aqui van los metodos XD
 }
+

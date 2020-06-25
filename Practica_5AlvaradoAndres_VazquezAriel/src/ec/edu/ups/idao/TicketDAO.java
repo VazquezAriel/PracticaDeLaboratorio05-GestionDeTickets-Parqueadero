@@ -6,37 +6,40 @@
 package ec.edu.ups.idao;
 
 import ec.edu.ups.modelo.Ticket;
-import java.util.List;
+import java.util.Collection;
+import java.util.Map;
 
 /**
  *
  * @author HI andres
  */
 public class TicketDAO implements ITicketDAO {
+    
+    private Map<Integer, Ticket> tickets;
 
     @Override
     public void create(Ticket ticket) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Ticket read(int numero) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public void update(Ticket ticket) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void delete(Ticket ticket) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Ticket> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Collection<Ticket> findAll() {
+        Collection<Ticket> tickets = this.tickets.values();
+        return tickets;
     }
+
+
     
 }

@@ -6,37 +6,40 @@
 package ec.edu.ups.idao;
 
 import ec.edu.ups.modelo.Vehiculo;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author HI andres
  */
 public class VehiculoDAO implements IVehiculoDAO {
+    
+    private Map<String, Vehiculo> vehiculos;
 
     @Override
     public void create(Vehiculo vehiculo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Vehiculo read(String placa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public void update(Vehiculo vehiculo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void delete(Vehiculo vehiculo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Vehiculo> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Collection<Vehiculo> findAll() {
+        Collection<Vehiculo> vehiculos = this.vehiculos.values();
+        return vehiculos;
     }
+
     
 }

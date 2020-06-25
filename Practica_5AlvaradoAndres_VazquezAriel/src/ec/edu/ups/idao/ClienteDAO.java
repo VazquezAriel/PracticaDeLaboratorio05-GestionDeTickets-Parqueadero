@@ -6,37 +6,45 @@
 package ec.edu.ups.idao;
 
 import ec.edu.ups.modelo.Cliente;
-import java.util.List;
+import java.util.Collection;
+import java.util.Map;
 
 /**
  *
  * @author HI andres
  */
 public class ClienteDAO implements IClienteDAO {
+    
+    private Map<String, Cliente> clientes;
+
+    public ClienteDAO(Map<String, Cliente> clientes) {
+        this.clientes = clientes;
+    }
 
     @Override
     public void create(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public Cliente read(String cedula) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public void update(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void delete(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Cliente> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Collection<Cliente> findAll() {
+        Collection<Cliente> clientes = this.clientes.values();
+        return clientes;
     }
+
+    
     
 }
