@@ -5,17 +5,30 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.modelo.Cliente;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ariel
  */
 public class VentanaCrearCliente extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VentanaCrearCliente
-     */
-    public VentanaCrearCliente() {
+    //VentanaPrincipal
+    VentanaRegistroDeEntrada ventanaRegistroDeEntrada;
+    
+    //Controlador de Clientes
+    private ControladorCliente controladorCliente;
+    
+    public VentanaCrearCliente(VentanaRegistroDeEntrada ventanaRegistroDeEntrada, ControladorCliente controladorCliente) {
         initComponents();
+        
+        //Ventana
+        this.ventanaRegistroDeEntrada = ventanaRegistroDeEntrada;
+        
+        //Controlador
+        this.controladorCliente = controladorCliente;
     }
 
     /**
@@ -161,13 +174,28 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarClienteActionPerformed
+        controladorCliente.crear(jTextFieldCedula.getText(), jTextFieldNombre.getText(), jTextFieldDireccion.getText(), jTextFieldTelefono.getText());
+        ventanaRegistroDeEntrada.getVentanaCrearVehiculo().setVisible(true);
+        ventanaRegistroDeEntrada.getVentanaCrearVehiculo().getjTextFieldCliente().setText(jTextFieldCedula.getText());
+        limpiar();
         this.setVisible(false);
+        
     }//GEN-LAST:event_jButtonRegistrarClienteActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        ventanaRegistroDeEntrada.getVentanaCrearVehiculo().setVisible(true);
+        limpiar();
         this.setVisible(false);
+        
     }//GEN-LAST:event_jButtonCancelarActionPerformed
-
+    
+    public void limpiar() {
+        jTextFieldCedula.setText("");
+        jTextFieldDireccion.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldTelefono.setText("");
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;

@@ -5,15 +5,35 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorTicket;
+import ec.edu.ups.controlador.ControladorVehiculo;
+import ec.edu.ups.idao.ClienteDAO;
+import ec.edu.ups.idao.IClienteDAO;
+import ec.edu.ups.idao.ITicketDAO;
+import ec.edu.ups.idao.IVehiculoDAO;
+import ec.edu.ups.idao.TicketDAO;
+import ec.edu.ups.idao.VehiculoDAO;
 /**
  *
  * @author ariel
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
+    //Ventanas
     private VentanaListarTickets ventanaListarTickets;
     private VentanaRegistroDeEntrada ventanaRegistroDeEntrada;
     private VentanaRegistroDeSalida ventanaRegistroDeSalida;
+    
+    //Daos
+    private IClienteDAO clienteDAO;
+    private IVehiculoDAO vehiculoDAO;
+    private ITicketDAO ticketDAO; 
+    
+    //Controladores
+    private ControladorCliente  controladorCliente;
+    private ControladorVehiculo controladorVehiculo;
+    private ControladorTicket controladorTicket;
     
     /**
      * Creates new form VentanaPrincipal
@@ -21,9 +41,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         
+        //Instanciamos los Daos
+        clienteDAO = new ClienteDAO();
+        vehiculoDAO = new VehiculoDAO();
+        ticketDAO = new TicketDAO();
+        
+        //Instanciamos los Controladores
+        controladorCliente = new ControladorCliente(clienteDAO);
+        controladorVehiculo = new ControladorVehiculo(vehiculoDAO, controladorCliente);
+        controladorTicket = new ControladorTicket(ticketDAO, controladorVehiculo);
+        
         //Ventanas
         ventanaListarTickets = new VentanaListarTickets();
-        ventanaRegistroDeEntrada = new VentanaRegistroDeEntrada();
+        ventanaRegistroDeEntrada = new VentanaRegistroDeEntrada(controladorCliente, controladorTicket, controladorVehiculo);
         ventanaRegistroDeSalida = new VentanaRegistroDeSalida();
         
         //Agregar las ventanas internas

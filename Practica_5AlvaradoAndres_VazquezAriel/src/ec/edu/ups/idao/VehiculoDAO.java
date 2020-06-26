@@ -5,9 +5,10 @@
  */
 package ec.edu.ups.idao;
 
+import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Vehiculo;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -18,13 +19,18 @@ public class VehiculoDAO implements IVehiculoDAO {
     
     private Map<String, Vehiculo> vehiculos;
 
+    public VehiculoDAO() {
+        vehiculos = new HashMap<String, Vehiculo>();
+    }
+    
     @Override
     public void create(Vehiculo vehiculo) {
+        vehiculos.put(vehiculo.getPlaca(), vehiculo);
     }
 
     @Override
     public Vehiculo read(String placa) {
-        return null;
+        return vehiculos.get(placa);
     }
 
     @Override

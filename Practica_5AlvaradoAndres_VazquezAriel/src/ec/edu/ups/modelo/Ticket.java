@@ -19,6 +19,11 @@ public class Ticket {
     private double total;
     private Vehiculo vehiculo;
 
+    public Ticket(Date fechaEntrada, Vehiculo vehiculo) {
+        this.fechaEntrada = fechaEntrada;
+        this.vehiculo = vehiculo;
+    }
+    
     public Ticket(int numero, Date fechaEntrada, Date fechaSalida, double total) {
         this.numero = numero;
         this.fechaEntrada = fechaEntrada;

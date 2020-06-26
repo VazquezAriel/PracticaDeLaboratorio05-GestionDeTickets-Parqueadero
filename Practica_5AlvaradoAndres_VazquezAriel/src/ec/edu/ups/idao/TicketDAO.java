@@ -7,6 +7,7 @@ package ec.edu.ups.idao;
 
 import ec.edu.ups.modelo.Ticket;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -16,9 +17,17 @@ import java.util.Map;
 public class TicketDAO implements ITicketDAO {
     
     private Map<Integer, Ticket> tickets;
+    private int numero;
+
+    public TicketDAO() {
+        tickets = new HashMap<Integer, Ticket>();
+        numero = 0;
+    }
 
     @Override
     public void create(Ticket ticket) {
+        ticket.setNumero(++numero);
+        tickets.put(ticket.getNumero(), ticket);
     }
 
     @Override
@@ -38,6 +47,11 @@ public class TicketDAO implements ITicketDAO {
     public Collection<Ticket> findAll() {
         Collection<Ticket> tickets = this.tickets.values();
         return tickets;
+    }
+
+    @Override
+    public int obtenerUltimoNumero() {
+        return numero;
     }
 
 

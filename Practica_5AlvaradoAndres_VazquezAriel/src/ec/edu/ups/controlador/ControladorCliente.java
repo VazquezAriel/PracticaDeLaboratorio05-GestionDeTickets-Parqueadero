@@ -7,6 +7,7 @@ package ec.edu.ups.controlador;
 
 import ec.edu.ups.idao.IClienteDAO;
 import ec.edu.ups.modelo.Cliente;
+import java.util.Collection;
 
 /**
  *
@@ -21,6 +22,22 @@ public class ControladorCliente {
         this.clienteDAO = clienteDAO;
     }
     
-    //Aqui van los metodos XD
+    public void crear(String cedula, String nombre, String direccion, String telefono) {
+        cliente = new Cliente(cedula, nombre, direccion, telefono);
+        clienteDAO.create(cliente);
+    }
+    
+    public void actualizar(Cliente cliente) {
+        clienteDAO.create(cliente);
+    }
+    
+    public Cliente buscar(String cedula) {
+        return clienteDAO.read(cedula);
+    }
+    
+    public Collection<Cliente> listar() {
+        Collection<Cliente> clientes = clienteDAO.findAll();
+        return clientes;
+    }
 }
 

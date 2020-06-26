@@ -5,24 +5,38 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorVehiculo;
+import ec.edu.ups.modelo.Cliente;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ariel
  */
 public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
 
-    private VentanaRegistroDeEntrada ventanaRegistroDeEntrada;
-    private VentanaCrearCliente ventanaCrearCliente;
+    //VentanaPrincipal
+    VentanaRegistroDeEntrada ventanaRegistroDeEntrada;
+    
+    //Controladores
+    private ControladorCliente controladorCliente;
+    private ControladorVehiculo controladorVehiculo;
 
     /**
      * Creates new form VentanaCrearVehiculo
      */
-    public VentanaCrearVehiculo(VentanaRegistroDeEntrada ventanaRegistroDeEntrada, VentanaCrearCliente ventanaCrearCliente) {
+    public VentanaCrearVehiculo(VentanaRegistroDeEntrada ventanaRegistroDeEntrada, ControladorVehiculo controladorVehiculo, ControladorCliente controladorCliente) {
         initComponents();
-
-        //Ventanas
+        
+        //Ventana
         this.ventanaRegistroDeEntrada = ventanaRegistroDeEntrada;
-        this.ventanaCrearCliente = ventanaCrearCliente;
+
+        //Controladores
+        this.controladorCliente = controladorCliente;
+        this.controladorVehiculo = controladorVehiculo;
+
     }
 
     /**
@@ -54,6 +68,23 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setResizable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jPanelPrincipal.setBackground(new java.awt.Color(12, 131, 131));
 
@@ -65,7 +96,7 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Cedula", "Nombre", "direccion", "Telefono"
+                "Cedula", "Nombre", "Direccion", "Telefono"
             }
         ) {
             Class[] types = new Class [] {
@@ -81,6 +112,12 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTableClientes.setSelectionBackground(new java.awt.Color(204, 153, 0));
+        jTableClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableClientesMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTableClientes);
@@ -219,18 +256,61 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCreaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreaClienteActionPerformed
-        ventanaCrearCliente.setVisible(true);
+        ventanaRegistroDeEntrada.getVentanaCrearCliente().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonCreaClienteActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        limpiar();
         this.setVisible(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarVehiculoActionPerformed
+        controladorVehiculo.crear(jTextFieldPlaca.getText(), jTextFieldMarca.getText(), jTextFieldModelo.getText(), jTextFieldCliente.getText());
+        Cliente cliente = controladorCliente.buscar(jTextFieldCliente.getText());
+        ventanaRegistroDeEntrada.cargarDatosCliente(cliente);
+        ventanaRegistroDeEntrada.cargarDatosTablaVehiculos();
+        ventanaRegistroDeEntrada.getjTextFieldPlaca().setText(jTextFieldPlaca.getText());
+        limpiar();
         this.setVisible(false);
+        
     }//GEN-LAST:event_jButtonRegistrarVehiculoActionPerformed
 
+    private void jTableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientesMouseClicked
+        int filaSeleccionada = jTableClientes.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            String cedulaCliente = jTableClientes.getValueAt(filaSeleccionada, 0).toString();
+            jTextFieldCliente.setText(cedulaCliente);
+            
+        }
+    }//GEN-LAST:event_jTableClientesMouseClicked
 
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        cargarDatosTablaClientes();
+        
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    public void cargarDatosTablaClientes() {
+        DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+        modelo.setRowCount(0);
+        for (Cliente cliente : controladorCliente.listar()) {
+            Object[] rowData = {cliente.getCedula(), cliente.getNombre(), cliente.getDireccion(), cliente.getTelefono()};
+            modelo.addRow(rowData);
+        }
+        jTableClientes.setModel(modelo);
+    }
+
+    public JTextField getjTextFieldCliente() {
+        return jTextFieldCliente;
+    }
+    
+    public void limpiar() {
+        jTextFieldCliente.setText("Seleccione un Cliente");
+        jTextFieldMarca.setText("");
+        jTextFieldModelo.setText("");
+        jTextFieldPlaca.setText("");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonCreaCliente;

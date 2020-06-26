@@ -7,6 +7,7 @@ package ec.edu.ups.idao;
 
 import ec.edu.ups.modelo.Cliente;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,22 +18,23 @@ public class ClienteDAO implements IClienteDAO {
     
     private Map<String, Cliente> clientes;
 
-    public ClienteDAO(Map<String, Cliente> clientes) {
-        this.clientes = clientes;
+    public ClienteDAO() {
+        clientes = new HashMap<String, Cliente>();
     }
 
     @Override
     public void create(Cliente cliente) {
-        
+        clientes.put(cliente.getCedula(), cliente);
     }
 
     @Override
     public Cliente read(String cedula) {
-        return null;
+        return clientes.get(cedula);
     }
 
     @Override
     public void update(Cliente cliente) {
+        clientes.put(cliente.getCedula(), cliente);
     }
 
     @Override

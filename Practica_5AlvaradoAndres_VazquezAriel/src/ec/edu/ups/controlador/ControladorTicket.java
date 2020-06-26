@@ -6,7 +6,10 @@
 package ec.edu.ups.controlador;
 
 import ec.edu.ups.idao.ITicketDAO;
+import ec.edu.ups.idao.IVehiculoDAO;
 import ec.edu.ups.modelo.Ticket;
+import ec.edu.ups.modelo.Vehiculo;
+import java.util.Date;
 
 /**
  *
@@ -15,12 +18,24 @@ import ec.edu.ups.modelo.Ticket;
 public class ControladorTicket {
     
     private ITicketDAO ticketDAO;
+    private ControladorVehiculo controladorVehiculo;
     private Ticket ticket;
 
-    public ControladorTicket(ITicketDAO ticketDAO) {
+    public ControladorTicket(ITicketDAO ticketDAO,ControladorVehiculo controladorVehiculo) {
         this.ticketDAO = ticketDAO;
+        this.controladorVehiculo = controladorVehiculo;
     }
     
+    public void crear(Date fechaEntrada, String placa) {
+        Vehiculo vehiculo = controladorVehiculo.buscar(placa);
+        ticket = new Ticket(fechaEntrada, vehiculo);
+        ticketDAO.create(ticket);
+    }
+    
+    public int obtenerSiguienteNumero() {
+        int numero = ticketDAO.obtenerUltimoNumero();
+        return ++numero;
+    }
     
     
 }

@@ -12,20 +12,22 @@ import java.util.Objects;
  * @author HI andres
  */
 public class Vehiculo {
-private String placa;
-private String marca;
-private String modelo;
 
+    private String placa;
+    private String marca;
+    private String modelo;
+    private String cliente;
 
-    public Vehiculo(String placa, String marca, String modelo) {
+    public Vehiculo(String placa, String marca, String modelo, String cliente) {
+        
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
+        this.cliente = cliente;
     }
 
     public Vehiculo() {
     }
-
 
     public String getPlaca() {
         return placa;
@@ -49,6 +51,14 @@ private String modelo;
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
     }
 
     @Override
@@ -75,6 +85,5 @@ private String modelo;
         }
         return true;
     }
-
 
 }

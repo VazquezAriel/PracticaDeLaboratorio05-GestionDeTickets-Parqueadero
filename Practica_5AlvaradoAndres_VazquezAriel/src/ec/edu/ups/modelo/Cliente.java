@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,6 +29,7 @@ public class Cliente {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
+        vehiculos = new ArrayList<Vehiculo>();
     }
 
     public String getCedula() {
@@ -68,6 +70,10 @@ public class Cliente {
 
     public void setVehiculos(List<Vehiculo> vehiculos) {
         this.vehiculos = vehiculos;
+    }
+    
+    public void agregarVehiculo(Vehiculo vehiculo) {
+        vehiculos.add(vehiculo);
     }
     
 
