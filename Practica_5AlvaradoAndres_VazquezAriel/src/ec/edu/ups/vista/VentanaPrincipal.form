@@ -30,6 +30,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCerrar">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/ec/edu/ups/imagen/cerrar.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cerrar"/>
               </Properties>
             </MenuItem>
@@ -105,14 +108,40 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCambiarColor">
+            <Menu class="javax.swing.JMenu" name="jMenu1">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/ec/edu/ups/imagen/paleta-de-color.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cambiar color del Fondo"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemCambiarColorActionPerformed"/>
-              </Events>
-            </MenuItem>
+              <SubComponents>
+                <MenuItem class="javax.swing.JRadioButtonMenuItem" name="rbCian">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cian"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbCianActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JRadioButtonMenuItem" name="rbGris">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Gris"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbGrisActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JRadioButtonMenuItem" name="rbMagenta">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Magenta"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbMagentaActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
           </SubComponents>
         </Menu>
       </SubComponents>
@@ -120,6 +149,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Parqueadero UPS"/>
     <Property name="resizable" type="boolean" value="false"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[850, 600]"/>
@@ -173,7 +203,7 @@
         <Container class="javax.swing.JPanel" name="jPanelPrincipal">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="6d" green="66" red="30" type="rgb"/>
+              <Color blue="83" green="83" red="c" type="rgb"/>
             </Property>
           </Properties>
 

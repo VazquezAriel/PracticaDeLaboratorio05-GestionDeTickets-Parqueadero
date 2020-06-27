@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorVehiculo;
 import ec.edu.ups.modelo.Cliente;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -266,22 +267,25 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarVehiculoActionPerformed
-        controladorVehiculo.crear(jTextFieldPlaca.getText(), jTextFieldMarca.getText(), jTextFieldModelo.getText(), jTextFieldCliente.getText());
-        Cliente cliente = controladorCliente.buscar(jTextFieldCliente.getText());
-        ventanaRegistroDeEntrada.cargarDatosCliente(cliente);
-        ventanaRegistroDeEntrada.cargarDatosTablaVehiculos();
-        ventanaRegistroDeEntrada.getjTextFieldPlaca().setText(jTextFieldPlaca.getText());
-        limpiar();
-        this.setVisible(false);
-        
+        if (jTextFieldPlaca.getText().equals("") || jTextFieldMarca.getText().equals("")
+                || jTextFieldModelo.getText().equals("") || jTextFieldCliente.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Faltan datos por ingresar");
+        } else {
+            controladorVehiculo.crear(jTextFieldPlaca.getText(), jTextFieldMarca.getText(), jTextFieldModelo.getText(), jTextFieldCliente.getText());
+            Cliente cliente = controladorCliente.buscar(jTextFieldCliente.getText());
+            ventanaRegistroDeEntrada.cargarDatosCliente(cliente);
+            ventanaRegistroDeEntrada.cargarDatosTablaVehiculos();
+            ventanaRegistroDeEntrada.getjTextFieldPlaca().setText(jTextFieldPlaca.getText());
+            limpiar();
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jButtonRegistrarVehiculoActionPerformed
 
     private void jTableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientesMouseClicked
         int filaSeleccionada = jTableClientes.getSelectedRow();
         if (filaSeleccionada >= 0) {
             String cedulaCliente = jTableClientes.getValueAt(filaSeleccionada, 0).toString();
-            jTextFieldCliente.setText(cedulaCliente);
-            
+            jTextFieldCliente.setText(cedulaCliente);    
         }
     }//GEN-LAST:event_jTableClientesMouseClicked
 

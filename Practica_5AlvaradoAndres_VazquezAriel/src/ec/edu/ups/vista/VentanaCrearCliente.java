@@ -7,6 +7,7 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.modelo.Cliente;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -118,13 +119,10 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabelCedula1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabelNombre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(jTextFieldCedula)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(jTextFieldCedula))))
                 .addGap(69, 69, 69))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(70, 70, 70)
@@ -152,7 +150,7 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTelefono1)
                     .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelar)
                     .addComponent(jButtonRegistrarCliente))
@@ -174,12 +172,16 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarClienteActionPerformed
-        controladorCliente.crear(jTextFieldCedula.getText(), jTextFieldNombre.getText(), jTextFieldDireccion.getText(), jTextFieldTelefono.getText());
-        ventanaRegistroDeEntrada.getVentanaCrearVehiculo().setVisible(true);
-        ventanaRegistroDeEntrada.getVentanaCrearVehiculo().getjTextFieldCliente().setText(jTextFieldCedula.getText());
-        limpiar();
-        this.setVisible(false);
-        
+        if (jTextFieldCedula.getText().equals("") || jTextFieldNombre.getText().equals("")
+                || jTextFieldDireccion.getText().equals("") || jTextFieldTelefono.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Faltan datos por ingresar");
+        } else {
+            controladorCliente.crear(jTextFieldCedula.getText(), jTextFieldNombre.getText(), jTextFieldDireccion.getText(), jTextFieldTelefono.getText());
+            ventanaRegistroDeEntrada.getVentanaCrearVehiculo().setVisible(true);
+            ventanaRegistroDeEntrada.getVentanaCrearVehiculo().getjTextFieldCliente().setText(jTextFieldCedula.getText());
+            limpiar();
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jButtonRegistrarClienteActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed

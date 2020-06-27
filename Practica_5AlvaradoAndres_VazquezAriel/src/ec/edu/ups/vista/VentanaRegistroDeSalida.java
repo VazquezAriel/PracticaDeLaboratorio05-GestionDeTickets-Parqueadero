@@ -27,18 +27,123 @@ public class VentanaRegistroDeSalida extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabelNumeroDeTicket = new javax.swing.JLabel();
+        jLabelFechaDeIngreso = new javax.swing.JLabel();
+        jLabelPlaca = new javax.swing.JLabel();
+        jLabelPlaca1 = new javax.swing.JLabel();
+        jTextFieldNumeroDeTicket = new javax.swing.JTextField();
+        jTextFieldNumeroDeTicket1 = new javax.swing.JTextField();
+        jTextFieldNumeroDeTicket2 = new javax.swing.JTextField();
+        jTextFieldNumeroDeTicket3 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(12, 131, 131));
+
+        jLabelTitulo.setFont(new java.awt.Font("Arial Narrow", 1, 36)); // NOI18N
+        jLabelTitulo.setText("Registrar Salida");
+
+        jLabelNumeroDeTicket.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jLabelNumeroDeTicket.setText("Numero de Ticket :");
+
+        jLabelFechaDeIngreso.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jLabelFechaDeIngreso.setText("Fecha y Hora de Salida:");
+
+        jLabelPlaca.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jLabelPlaca.setText("Valor a Pagar:");
+
+        jLabelPlaca1.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jLabelPlaca1.setText("Placa del vehiculo:");
+
+        jTextFieldNumeroDeTicket.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jTextFieldNumeroDeTicket1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jTextFieldNumeroDeTicket2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jTextFieldNumeroDeTicket3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jButton1.setText("Cobrar");
+
+        jButton2.setText("Cancelar");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelPlaca1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldNumeroDeTicket, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelTitulo)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelNumeroDeTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldNumeroDeTicket2))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldNumeroDeTicket3))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelFechaDeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldNumeroDeTicket1)))))
+                .addGap(354, 354, 354))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabelTitulo)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNumeroDeTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNumeroDeTicket2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelFechaDeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNumeroDeTicket1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPlaca1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNumeroDeTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNumeroDeTicket3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(141, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 784, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 524, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -46,5 +151,17 @@ public class VentanaRegistroDeSalida extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabelFechaDeIngreso;
+    private javax.swing.JLabel jLabelNumeroDeTicket;
+    private javax.swing.JLabel jLabelPlaca;
+    private javax.swing.JLabel jLabelPlaca1;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextFieldNumeroDeTicket;
+    private javax.swing.JTextField jTextFieldNumeroDeTicket1;
+    private javax.swing.JTextField jTextFieldNumeroDeTicket2;
+    private javax.swing.JTextField jTextFieldNumeroDeTicket3;
     // End of variables declaration//GEN-END:variables
 }

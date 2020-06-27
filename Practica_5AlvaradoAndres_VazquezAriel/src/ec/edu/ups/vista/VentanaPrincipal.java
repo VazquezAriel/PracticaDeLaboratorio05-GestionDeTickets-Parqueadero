@@ -14,6 +14,7 @@ import ec.edu.ups.idao.ITicketDAO;
 import ec.edu.ups.idao.IVehiculoDAO;
 import ec.edu.ups.idao.TicketDAO;
 import ec.edu.ups.idao.VehiculoDAO;
+import java.awt.Color;
 /**
  *
  * @author ariel
@@ -91,13 +92,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItemEspañol = new javax.swing.JMenuItem();
         jMenuItemIngles = new javax.swing.JMenuItem();
         jMenuAjustes = new javax.swing.JMenu();
-        jMenuItemCambiarColor = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        rbCian = new javax.swing.JRadioButtonMenuItem();
+        rbGris = new javax.swing.JRadioButtonMenuItem();
+        rbMagenta = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Parqueadero UPS");
         setResizable(false);
         setSize(new java.awt.Dimension(850, 600));
 
-        jPanelPrincipal.setBackground(new java.awt.Color(48, 102, 109));
+        jPanelPrincipal.setBackground(new java.awt.Color(12, 131, 131));
 
         jLabelTitulo.setFont(new java.awt.Font("Georgia", 1, 55)); // NOI18N
         jLabelTitulo.setText("Parqueadero UPS");
@@ -197,6 +202,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItemIniciarSecion.setText("Iniciar Sesion");
         jMenuInicio.add(jMenuItemIniciarSecion);
 
+        jMenuItemCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagen/cerrar.png"))); // NOI18N
         jMenuItemCerrar.setText("Cerrar");
         jMenuInicio.add(jMenuItemCerrar);
 
@@ -241,13 +247,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuAjustes.setText("Ajustes");
         jMenuAjustes.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
 
-        jMenuItemCambiarColor.setText("Cambiar color del Fondo");
-        jMenuItemCambiarColor.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagen/paleta-de-color.png"))); // NOI18N
+        jMenu1.setText("Cambiar color del Fondo");
+
+        rbCian.setText("Cian");
+        rbCian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemCambiarColorActionPerformed(evt);
+                rbCianActionPerformed(evt);
             }
         });
-        jMenuAjustes.add(jMenuItemCambiarColor);
+        jMenu1.add(rbCian);
+
+        rbGris.setText("Gris");
+        rbGris.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbGrisActionPerformed(evt);
+            }
+        });
+        jMenu1.add(rbGris);
+
+        rbMagenta.setText("Magenta");
+        rbMagenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbMagentaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(rbMagenta);
+
+        jMenuAjustes.add(jMenu1);
 
         menuBar.add(jMenuAjustes);
 
@@ -268,10 +295,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemCambiarColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCambiarColorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemCambiarColorActionPerformed
-
     private void jButtonRegistrarEntradajButtonRegistroEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarEntradajButtonRegistroEntradaActionPerformed
         ventanaRegistroDeEntrada.setVisible(true);
     }//GEN-LAST:event_jButtonRegistrarEntradajButtonRegistroEntradaActionPerformed
@@ -283,6 +306,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButtonListarTicketsjButtonListarTicketsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarTicketsjButtonListarTicketsActionPerformed
         ventanaListarTickets.setVisible(true);
     }//GEN-LAST:event_jButtonListarTicketsjButtonListarTicketsActionPerformed
+
+    private void rbCianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCianActionPerformed
+        if(rbCian.isSelected()){
+        jPanelPrincipal.setBackground(Color.CYAN);
+        }
+    }//GEN-LAST:event_rbCianActionPerformed
+
+    private void rbGrisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbGrisActionPerformed
+if(rbGris.isSelected()){
+        jPanelPrincipal.setBackground(Color.GRAY);
+        }
+    }//GEN-LAST:event_rbGrisActionPerformed
+
+    private void rbMagentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMagentaActionPerformed
+        if(rbMagenta.isSelected()){
+        jPanelPrincipal.setBackground(Color.MAGENTA);
+        }
+    }//GEN-LAST:event_rbMagentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,10 +367,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabelImagen;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenuAjustes;
     private javax.swing.JMenu jMenuIdioma;
     private javax.swing.JMenu jMenuInicio;
-    private javax.swing.JMenuItem jMenuItemCambiarColor;
     private javax.swing.JMenuItem jMenuItemCerrar;
     private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenuItem jMenuItemEspañol;
@@ -340,6 +381,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuRegistros;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JRadioButtonMenuItem rbCian;
+    private javax.swing.JRadioButtonMenuItem rbGris;
+    private javax.swing.JRadioButtonMenuItem rbMagenta;
     // End of variables declaration//GEN-END:variables
 
 }
