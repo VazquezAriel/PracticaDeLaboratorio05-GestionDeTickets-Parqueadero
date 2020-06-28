@@ -15,6 +15,7 @@ import ec.edu.ups.idao.IVehiculoDAO;
 import ec.edu.ups.idao.TicketDAO;
 import ec.edu.ups.idao.VehiculoDAO;
 import java.awt.Color;
+
 /**
  *
  * @author ariel
@@ -25,43 +26,43 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private VentanaListarTickets ventanaListarTickets;
     private VentanaRegistroDeEntrada ventanaRegistroDeEntrada;
     private VentanaRegistroDeSalida ventanaRegistroDeSalida;
-    
+
     //Daos
     private IClienteDAO clienteDAO;
     private IVehiculoDAO vehiculoDAO;
-    private ITicketDAO ticketDAO; 
-    
+    private ITicketDAO ticketDAO;
+
     //Controladores
-    private ControladorCliente  controladorCliente;
+    private ControladorCliente controladorCliente;
     private ControladorVehiculo controladorVehiculo;
     private ControladorTicket controladorTicket;
-    
+
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         initComponents();
-        
+
         //Instanciamos los Daos
         clienteDAO = new ClienteDAO();
         vehiculoDAO = new VehiculoDAO();
         ticketDAO = new TicketDAO();
-        
+
         //Instanciamos los Controladores
         controladorCliente = new ControladorCliente(clienteDAO);
         controladorVehiculo = new ControladorVehiculo(vehiculoDAO, controladorCliente);
-        controladorTicket = new ControladorTicket(ticketDAO, controladorVehiculo);
-        
+        controladorTicket = new ControladorTicket(ticketDAO);
+
         //Ventanas
-        ventanaListarTickets = new VentanaListarTickets();
+        ventanaListarTickets = new VentanaListarTickets(controladorTicket);
         ventanaRegistroDeEntrada = new VentanaRegistroDeEntrada(controladorCliente, controladorTicket, controladorVehiculo);
-        ventanaRegistroDeSalida = new VentanaRegistroDeSalida();
-        
+        ventanaRegistroDeSalida = new VentanaRegistroDeSalida(controladorTicket);
+
         //Agregar las ventanas internas
         jDesktopPane1.add(ventanaListarTickets);
         jDesktopPane1.add(ventanaRegistroDeEntrada);
         jDesktopPane1.add(ventanaRegistroDeSalida);
-        
+
     }
 
     /**
@@ -96,6 +97,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         rbCian = new javax.swing.JRadioButtonMenuItem();
         rbGris = new javax.swing.JRadioButtonMenuItem();
         rbMagenta = new javax.swing.JRadioButtonMenuItem();
+        jMenuItemRestaurar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Parqueadero UPS");
@@ -274,6 +276,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(rbMagenta);
 
+        jMenuItemRestaurar.setText("Restaurar Color");
+        jMenuItemRestaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRestaurarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemRestaurar);
+
         jMenuAjustes.add(jMenu1);
 
         menuBar.add(jMenuAjustes);
@@ -308,22 +318,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonListarTicketsjButtonListarTicketsActionPerformed
 
     private void rbCianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCianActionPerformed
-        if(rbCian.isSelected()){
         jPanelPrincipal.setBackground(Color.CYAN);
-        }
+        
     }//GEN-LAST:event_rbCianActionPerformed
 
     private void rbGrisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbGrisActionPerformed
-if(rbGris.isSelected()){
         jPanelPrincipal.setBackground(Color.GRAY);
-        }
+        
     }//GEN-LAST:event_rbGrisActionPerformed
 
     private void rbMagentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMagentaActionPerformed
-        if(rbMagenta.isSelected()){
         jPanelPrincipal.setBackground(Color.MAGENTA);
-        }
+        
     }//GEN-LAST:event_rbMagentaActionPerformed
+
+    private void jMenuItemRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRestaurarActionPerformed
+        jPanelPrincipal.setBackground(new Color(12, 131, 131));
+        
+    }//GEN-LAST:event_jMenuItemRestaurarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,6 +388,7 @@ if(rbGris.isSelected()){
     private javax.swing.JMenuItem jMenuItemEspañol;
     private javax.swing.JMenuItem jMenuItemIngles;
     private javax.swing.JMenuItem jMenuItemIniciarSecion;
+    private javax.swing.JMenuItem jMenuItemRestaurar;
     private javax.swing.JMenuItem jMenuItemTickets;
     private javax.swing.JMenuItem jMenuItemVehiculos;
     private javax.swing.JMenu jMenuRegistros;

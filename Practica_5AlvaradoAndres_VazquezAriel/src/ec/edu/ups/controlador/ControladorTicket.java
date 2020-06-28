@@ -6,10 +6,10 @@
 package ec.edu.ups.controlador;
 
 import ec.edu.ups.idao.ITicketDAO;
-import ec.edu.ups.idao.IVehiculoDAO;
 import ec.edu.ups.modelo.Ticket;
 import ec.edu.ups.modelo.Vehiculo;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Collection;
 
 /**
  *
@@ -18,18 +18,19 @@ import java.util.Date;
 public class ControladorTicket {
     
     private ITicketDAO ticketDAO;
-    private ControladorVehiculo controladorVehiculo;
     private Ticket ticket;
 
-    public ControladorTicket(ITicketDAO ticketDAO,ControladorVehiculo controladorVehiculo) {
+    public ControladorTicket(ITicketDAO ticketDAO) {
         this.ticketDAO = ticketDAO;
-        this.controladorVehiculo = controladorVehiculo;
     }
     
-    public void crear(Date fechaEntrada, String placa) {
-        Vehiculo vehiculo = controladorVehiculo.buscar(placa);
+    public void crear(LocalDateTime fechaEntrada, Vehiculo vehiculo) {
         ticket = new Ticket(fechaEntrada, vehiculo);
         ticketDAO.create(ticket);
+    }
+    
+    public Ticket buscar(int numero) {
+        return ticketDAO.read(numero);
     }
     
     public int obtenerSiguienteNumero() {
@@ -37,5 +38,12 @@ public class ControladorTicket {
         return ++numero;
     }
     
+    public LocalDateTime obtenerFechaActual() {
+        return ticketDAO.obtenerFechaACtual();
+    }
+    
+    public Collection<Ticket> listar() {
+        return ticketDAO.findAll();
+    }
     
 }

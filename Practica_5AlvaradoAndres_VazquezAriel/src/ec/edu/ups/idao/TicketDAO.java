@@ -6,6 +6,7 @@
 package ec.edu.ups.idao;
 
 import ec.edu.ups.modelo.Ticket;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +18,7 @@ import java.util.Map;
 public class TicketDAO implements ITicketDAO {
     
     private Map<Integer, Ticket> tickets;
+    private LocalDateTime fechaActual;
     private int numero;
 
     public TicketDAO() {
@@ -32,7 +34,7 @@ public class TicketDAO implements ITicketDAO {
 
     @Override
     public Ticket read(int numero) {
-        return null;
+        return tickets.get(numero);
     }
 
     @Override
@@ -54,6 +56,10 @@ public class TicketDAO implements ITicketDAO {
         return numero;
     }
 
+    @Override
+    public LocalDateTime obtenerFechaACtual() {
+        fechaActual = LocalDateTime.now();
+        return fechaActual;
+    }
 
-    
 }

@@ -5,17 +5,25 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorTicket;
+import ec.edu.ups.modelo.Cliente;
+import ec.edu.ups.modelo.Ticket;
+import ec.edu.ups.modelo.Vehiculo;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ariel
  */
 public class VentanaListarTickets extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VentanaListarTickets
-     */
-    public VentanaListarTickets() {
+    private ControladorTicket controladorTicket;
+
+    public VentanaListarTickets(ControladorTicket controladorTicket) {
         initComponents();
+
+        //Controlador
+        this.controladorTicket = controladorTicket;
     }
 
     /**
@@ -29,39 +37,54 @@ public class VentanaListarTickets extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanelDatosCliente = new javax.swing.JPanel();
+        jTableTickets = new javax.swing.JTable();
+        jPanelDatosVehiculo = new javax.swing.JPanel();
         jLabelCedula = new javax.swing.JLabel();
-        jLabelNombre = new javax.swing.JLabel();
-        jLabelDireccion = new javax.swing.JLabel();
-        jLabelTelefono = new javax.swing.JLabel();
+        jLabelMarca = new javax.swing.JLabel();
+        jLabelModelo = new javax.swing.JLabel();
+        jLabelCliente = new javax.swing.JLabel();
+        jTextFieldMarca = new javax.swing.JTextField();
+        jTextFieldCliente = new javax.swing.JTextField();
+        jTextFieldModelo = new javax.swing.JTextField();
+        jTextFieldPlaca = new javax.swing.JTextField();
+        jPanelDatosCliente1 = new javax.swing.JPanel();
+        jLabelCedula1 = new javax.swing.JLabel();
+        jLabelNombre1 = new javax.swing.JLabel();
+        jLabelDireccion1 = new javax.swing.JLabel();
+        jLabelTelefono1 = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
         jTextFieldTelefono = new javax.swing.JTextField();
         jTextFieldDireccion = new javax.swing.JTextField();
         jTextFieldCedula = new javax.swing.JTextField();
-        jLabelPlaca = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabelMarca1 = new javax.swing.JLabel();
-        jLabelModelo = new javax.swing.JLabel();
-        jTextFieldCedula1 = new javax.swing.JTextField();
-        jTextFieldCedula2 = new javax.swing.JTextField();
-        jTextFieldCedula3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(12, 131, 131));
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(12, 131, 131));
 
         jScrollPane1.setBackground(new java.awt.Color(12, 131, 131));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableTickets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Numero", "Vehiculo", "Fecha y Hora de ingreso", "Fecha y Hora de salida", "Total"
@@ -82,23 +105,115 @@ public class VentanaListarTickets extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jTableTickets.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableTicketsMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableTickets);
+        if (jTableTickets.getColumnModel().getColumnCount() > 0) {
+            jTableTickets.getColumnModel().getColumn(0).setResizable(false);
+            jTableTickets.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTableTickets.getColumnModel().getColumn(1).setResizable(false);
+            jTableTickets.getColumnModel().getColumn(1).setPreferredWidth(30);
+            jTableTickets.getColumnModel().getColumn(2).setResizable(false);
+            jTableTickets.getColumnModel().getColumn(2).setPreferredWidth(100);
+            jTableTickets.getColumnModel().getColumn(3).setResizable(false);
+            jTableTickets.getColumnModel().getColumn(3).setPreferredWidth(100);
+            jTableTickets.getColumnModel().getColumn(4).setResizable(false);
+            jTableTickets.getColumnModel().getColumn(4).setPreferredWidth(30);
+        }
 
-        jPanelDatosCliente.setBackground(new java.awt.Color(12, 131, 131));
-        jPanelDatosCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Datos del cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial Narrow", 0, 22))); // NOI18N
-        jPanelDatosCliente.setMaximumSize(new java.awt.Dimension(0, 0));
+        jPanelDatosVehiculo.setBackground(new java.awt.Color(12, 131, 131));
+        jPanelDatosVehiculo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Datos del vehiculo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial Narrow", 0, 22))); // NOI18N
+        jPanelDatosVehiculo.setMaximumSize(new java.awt.Dimension(0, 0));
 
         jLabelCedula.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jLabelCedula.setText("Cedula:");
+        jLabelCedula.setText("Placa:");
 
-        jLabelNombre.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jLabelNombre.setText("Nombre:");
+        jLabelMarca.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jLabelMarca.setText("Marca:");
 
-        jLabelDireccion.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jLabelDireccion.setText("Direccion:");
+        jLabelModelo.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jLabelModelo.setText("Modelo:");
 
-        jLabelTelefono.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jLabelTelefono.setText("Telefono:");
+        jLabelCliente.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jLabelCliente.setText("Cliente:");
+
+        jTextFieldMarca.setEditable(false);
+        jTextFieldMarca.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jTextFieldCliente.setEditable(false);
+        jTextFieldCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jTextFieldModelo.setEditable(false);
+        jTextFieldModelo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jTextFieldPlaca.setEditable(false);
+        jTextFieldPlaca.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        javax.swing.GroupLayout jPanelDatosVehiculoLayout = new javax.swing.GroupLayout(jPanelDatosVehiculo);
+        jPanelDatosVehiculo.setLayout(jPanelDatosVehiculoLayout);
+        jPanelDatosVehiculoLayout.setHorizontalGroup(
+            jPanelDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDatosVehiculoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDatosVehiculoLayout.createSequentialGroup()
+                        .addComponent(jLabelCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelDatosVehiculoLayout.createSequentialGroup()
+                        .addComponent(jLabelCedula)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelDatosVehiculoLayout.createSequentialGroup()
+                        .addComponent(jLabelMarca)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelDatosVehiculoLayout.createSequentialGroup()
+                        .addComponent(jLabelModelo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanelDatosVehiculoLayout.setVerticalGroup(
+            jPanelDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDatosVehiculoLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addGroup(jPanelDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCedula)
+                    .addComponent(jTextFieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelMarca)
+                    .addComponent(jTextFieldMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelModelo)
+                    .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCliente)
+                    .addComponent(jTextFieldCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
+        );
+
+        jPanelDatosCliente1.setBackground(new java.awt.Color(12, 131, 131));
+        jPanelDatosCliente1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Datos del cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial Narrow", 0, 22))); // NOI18N
+        jPanelDatosCliente1.setMaximumSize(new java.awt.Dimension(0, 0));
+
+        jLabelCedula1.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jLabelCedula1.setText("Cedula:");
+
+        jLabelNombre1.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jLabelNombre1.setText("Nombre:");
+
+        jLabelDireccion1.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jLabelDireccion1.setText("Direccion:");
+
+        jLabelTelefono1.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jLabelTelefono1.setText("Telefono:");
 
         jTextFieldNombre.setEditable(false);
         jTextFieldNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -112,133 +227,81 @@ public class VentanaListarTickets extends javax.swing.JInternalFrame {
         jTextFieldCedula.setEditable(false);
         jTextFieldCedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jLabelPlaca.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jLabelPlaca.setText("Placa:");
-
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel1.setText("Vehiculo");
-
-        jLabelMarca1.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jLabelMarca1.setText("Marca:");
-
-        jLabelModelo.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jLabelModelo.setText("Modelo:");
-
-        jTextFieldCedula1.setEditable(false);
-        jTextFieldCedula1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jTextFieldCedula2.setEditable(false);
-        jTextFieldCedula2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jTextFieldCedula3.setEditable(false);
-        jTextFieldCedula3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        javax.swing.GroupLayout jPanelDatosClienteLayout = new javax.swing.GroupLayout(jPanelDatosCliente);
-        jPanelDatosCliente.setLayout(jPanelDatosClienteLayout);
-        jPanelDatosClienteLayout.setHorizontalGroup(
-            jPanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDatosClienteLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelDatosCliente1Layout = new javax.swing.GroupLayout(jPanelDatosCliente1);
+        jPanelDatosCliente1.setLayout(jPanelDatosCliente1Layout);
+        jPanelDatosCliente1Layout.setHorizontalGroup(
+            jPanelDatosCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDatosCliente1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(jLabelPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldCedula1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldCedula2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelDatosClienteLayout.createSequentialGroup()
-                        .addComponent(jLabelMarca1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldCedula3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelDatosClienteLayout.createSequentialGroup()
-                        .addGroup(jPanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(jLabelNombre)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDatosClienteLayout.createSequentialGroup()
-                                .addComponent(jLabelCedula)
-                                .addGap(63, 63, 63)
-                                .addComponent(jTextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDireccion)
-                            .addComponent(jLabelTelefono))
-                        .addGap(60, 60, 60)
-                        .addGroup(jPanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDatosClienteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(273, 273, 273))
+                .addGroup(jPanelDatosCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDatosCliente1Layout.createSequentialGroup()
+                        .addComponent(jLabelTelefono1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelDatosCliente1Layout.createSequentialGroup()
+                        .addComponent(jLabelCedula1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelDatosCliente1Layout.createSequentialGroup()
+                        .addComponent(jLabelNombre1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelDatosCliente1Layout.createSequentialGroup()
+                        .addComponent(jLabelDireccion1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
-        jPanelDatosClienteLayout.setVerticalGroup(
-            jPanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDatosClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCedula)
-                    .addComponent(jTextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelDireccion)
+        jPanelDatosCliente1Layout.setVerticalGroup(
+            jPanelDatosCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDatosCliente1Layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addGroup(jPanelDatosCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCedula1)
+                    .addComponent(jTextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelDatosCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNombre1)
+                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelDatosCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDireccion1)
                     .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNombre)
-                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTelefono)
+                .addGroup(jPanelDatosCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTelefono1)
                     .addComponent(jTextFieldTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCedula1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCedula2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelMarca1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCedula3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51))
+                .addGap(31, 31, 31))
         );
-
-        jButton1.setText("Listar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jPanelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanelDatosVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelDatosCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addComponent(jPanelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jButton1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jPanelDatosCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelDatosVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        jPanelDatosVehiculo.getAccessibleContext().setAccessibleName("Datos del vehiculo");
+        jPanelDatosVehiculo.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,27 +317,72 @@ public class VentanaListarTickets extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTableTicketsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTicketsMouseClicked
+        int filaSeleccionada = jTableTickets.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            Vehiculo vehiculo = (Vehiculo) jTableTickets.getValueAt(filaSeleccionada, 1);
+            jTextFieldPlaca.setText(vehiculo.getPlaca());
+            jTextFieldMarca.setText(vehiculo.getMarca());
+            jTextFieldModelo.setText(vehiculo.getModelo());
+            jTextFieldCliente.setText(vehiculo.getCliente().toString());
+            Cliente cliente = vehiculo.getCliente();
+            jTextFieldCedula.setText(cliente.getCedula());
+            jTextFieldNombre.setText(cliente.getNombre());
+            jTextFieldDireccion.setText(cliente.getDireccion());
+            jTextFieldTelefono.setText(cliente.getTelefono());
+        }
+    }//GEN-LAST:event_jTableTicketsMouseClicked
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        limpiar();
+        cargarDatosTablaClientes();
+        
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    public void cargarDatosTablaClientes() {
+        DefaultTableModel modelo = (DefaultTableModel) jTableTickets.getModel();
+        modelo.setRowCount(0);
+        for (Ticket ticket : controladorTicket.listar()) {
+            Object[] rowData = {ticket.getNumero(), ticket.getVehiculo(), ticket.getFechaEntrada().toString(), ticket.getFechaSalida(), ticket.getTotal()};
+            modelo.addRow(rowData);
+            
+        }
+        jTableTickets.setModel(modelo);
+    }
+
+    public void limpiar() {
+        jTextFieldPlaca.setText("");
+        jTextFieldMarca.setText("");
+        jTextFieldModelo.setText("");
+        jTextFieldCliente.setText("");
+        jTextFieldCedula.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldDireccion.setText("");
+        jTextFieldTelefono.setText("");
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCedula;
-    private javax.swing.JLabel jLabelDireccion;
-    private javax.swing.JLabel jLabelMarca1;
+    private javax.swing.JLabel jLabelCedula1;
+    private javax.swing.JLabel jLabelCliente;
+    private javax.swing.JLabel jLabelDireccion1;
+    private javax.swing.JLabel jLabelMarca;
     private javax.swing.JLabel jLabelModelo;
-    private javax.swing.JLabel jLabelNombre;
-    private javax.swing.JLabel jLabelPlaca;
-    private javax.swing.JLabel jLabelTelefono;
+    private javax.swing.JLabel jLabelNombre1;
+    private javax.swing.JLabel jLabelTelefono1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelDatosCliente;
+    private javax.swing.JPanel jPanelDatosCliente1;
+    private javax.swing.JPanel jPanelDatosVehiculo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableTickets;
     private javax.swing.JTextField jTextFieldCedula;
-    private javax.swing.JTextField jTextFieldCedula1;
-    private javax.swing.JTextField jTextFieldCedula2;
-    private javax.swing.JTextField jTextFieldCedula3;
+    private javax.swing.JTextField jTextFieldCliente;
     private javax.swing.JTextField jTextFieldDireccion;
+    private javax.swing.JTextField jTextFieldMarca;
+    private javax.swing.JTextField jTextFieldModelo;
     private javax.swing.JTextField jTextFieldNombre;
+    private javax.swing.JTextField jTextFieldPlaca;
     private javax.swing.JTextField jTextFieldTelefono;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,9 +16,9 @@ public class Vehiculo {
     private String placa;
     private String marca;
     private String modelo;
-    private String cliente;
+    private Cliente cliente;
 
-    public Vehiculo(String placa, String marca, String modelo, String cliente) {
+    public Vehiculo(String placa, String marca, String modelo, Cliente cliente) {
         
         this.placa = placa;
         this.marca = marca;
@@ -53,12 +53,8 @@ public class Vehiculo {
         this.modelo = modelo;
     }
 
-    public String getCliente() {
+    public Cliente getCliente() {
         return cliente;
-    }
-
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
     }
 
     @Override
@@ -86,4 +82,8 @@ public class Vehiculo {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return placa;
+    }
 }

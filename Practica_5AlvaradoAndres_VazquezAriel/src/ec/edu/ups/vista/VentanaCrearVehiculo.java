@@ -268,11 +268,12 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
 
     private void jButtonRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarVehiculoActionPerformed
         if (jTextFieldPlaca.getText().equals("") || jTextFieldMarca.getText().equals("")
-                || jTextFieldModelo.getText().equals("") || jTextFieldCliente.getText().equals("")) {
+                || jTextFieldModelo.getText().equals("") || jTextFieldCliente.getText().equals("Seleccione un Cliente")) {
             JOptionPane.showMessageDialog(this, "Faltan datos por ingresar");
+            
         } else {
-            controladorVehiculo.crear(jTextFieldPlaca.getText(), jTextFieldMarca.getText(), jTextFieldModelo.getText(), jTextFieldCliente.getText());
             Cliente cliente = controladorCliente.buscar(jTextFieldCliente.getText());
+            controladorVehiculo.crear(jTextFieldPlaca.getText(), jTextFieldMarca.getText(), jTextFieldModelo.getText(), cliente);
             ventanaRegistroDeEntrada.cargarDatosCliente(cliente);
             ventanaRegistroDeEntrada.cargarDatosTablaVehiculos();
             ventanaRegistroDeEntrada.getjTextFieldPlaca().setText(jTextFieldPlaca.getText());

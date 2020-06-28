@@ -10,7 +10,8 @@ import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.controlador.ControladorVehiculo;
 import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Vehiculo;
-import java.util.Date;
+import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -106,6 +107,7 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
         jLabelNumeroDeTicket.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
         jLabelNumeroDeTicket.setText("Numero de Ticket :");
 
+        jTextFieldNumeroDeTicket.setEditable(false);
         jTextFieldNumeroDeTicket.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jTextFieldFechaDeIngreso.setEditable(false);
@@ -340,8 +342,6 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         limpiar();
-        jTextFieldFechaDeIngreso.setText(new Date(WIDTH).toString());
-        jTextFieldNumeroDeTicket.setText(controladorTicket.obtenerSiguienteNumero() + "");
         cargarDatosTablaVehiculos();
 
     }//GEN-LAST:event_formInternalFrameActivated
@@ -354,13 +354,20 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
             cargarDatosCliente(cliente);
             String placa = jTableVehiculos.getValueAt(filaSeleccionada, 0).toString();
             jTextFieldPlaca.setText(placa);
-            
+
         }
     }//GEN-LAST:event_jTableVehiculosMouseClicked
 
     private void jButtonRegistrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarTicketActionPerformed
-        controladorTicket.crear(new Date(WIDTH), jTextFieldPlaca.getText());
-        this.setVisible(true);
+
+        if (jTextFieldPlaca.getText().equals("Seleccione un vehiculo")) {
+            JOptionPane.showMessageDialog(this, "Seleccione un Vehiculo o Registre uno nuevo");
+        } else {
+            jTextFieldFechaDeIngreso.setText(controladorTicket.obtenerFechaActual().toString());
+            controladorTicket.crear(LocalDateTime.parse(jTextFieldFechaDeIngreso.getText()), controladorVehiculo.buscar(jTextFieldPlaca.getText()));
+            JOptionPane.showMessageDialog(this, "El ticket se ha registrado con exito" + "\nFecha:" + jTextFieldFechaDeIngreso.getText());
+            limpiar();
+        }
     }//GEN-LAST:event_jButtonRegistrarTicketActionPerformed
 
     public VentanaCrearVehiculo getVentanaCrearVehiculo() {
@@ -379,7 +386,7 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
         DefaultTableModel modelo = (DefaultTableModel) jTableVehiculos.getModel();
         modelo.setRowCount(0);
         for (Vehiculo vehiculo : controladorVehiculo.listar()) {
-            Object[] rowData = {vehiculo.getPlaca(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getCliente()};
+            Object[] rowData = {vehiculo.getPlaca(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getCliente().toString()};
             modelo.addRow(rowData);
         }
         jTableVehiculos.setModel(modelo);
@@ -400,6 +407,7 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
         jTextFieldNumeroDeTicket.setText("");
         jTextFieldPlaca.setText("Seleccione un vehiculo");
         jTextFieldTelefono.setText("");
+        jTextFieldNumeroDeTicket.setText(controladorTicket.obtenerSiguienteNumero() + "");
 
     }
 
