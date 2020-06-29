@@ -26,14 +26,16 @@ public class VentanaRegistroDeSalida extends javax.swing.JInternalFrame {
     private ResourceBundle mensaje;
     private String alerta2;
     private String alerta3;
+    private String salida;
 
     public VentanaRegistroDeSalida(ControladorTicket controladorTicket) {
         initComponents();
 
         //Controlador
         this.controladorTicket = controladorTicket;
-        alerta2="Registro de salida correcto";
+        alerta2="Registro de salida correcto ";
         alerta3="No existe ningun ticket relacionado con ese numero";
+        salida="\nHora de Salida: ";
     }
 
     public Locale getLocalizacion() {
@@ -71,6 +73,9 @@ public class VentanaRegistroDeSalida extends javax.swing.JInternalFrame {
      jLabelCedula1.setText(mensaje.getString("cedula"));
      labelClientePanel.setText(mensaje.getString("clienteVS"));
      labelVehiculoPanel.setText(mensaje.getString("vehiculoVS"));
+     alerta2=mensaje.getString("alerta2");
+     alerta3=mensaje.getString("alerta3");
+     salida=mensaje.getString("salida");
     }
     
 
@@ -492,7 +497,7 @@ public class VentanaRegistroDeSalida extends javax.swing.JInternalFrame {
                 jTextFieldNombre.setText(cliente.getNombre());
                 jTextFieldPlaca.setText(vehiculo.getPlaca());
                 jTextFieldTelefono.setText(cliente.getTelefono());
-                JOptionPane.showMessageDialog(this, alerta2 + "\nHora de Salida: " + jTextFieldFechaSalida.getText().toString());
+                JOptionPane.showMessageDialog(this, alerta2 +" "+ salida + jTextFieldFechaSalida.getText().toString());
 
             } else {
                 JOptionPane.showMessageDialog(this, alerta3);

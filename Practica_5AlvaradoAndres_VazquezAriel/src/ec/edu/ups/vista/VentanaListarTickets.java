@@ -394,7 +394,6 @@ public class VentanaListarTickets extends javax.swing.JInternalFrame {
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         limpiar();
         cargarDatosTablaClientes();
-
     }//GEN-LAST:event_formInternalFrameActivated
 
     public void cargarDatosTablaClientes() {

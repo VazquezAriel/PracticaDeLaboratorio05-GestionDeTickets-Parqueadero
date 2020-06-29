@@ -34,6 +34,9 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
     //idioma
     private Locale localizacion;
     private ResourceBundle mensaje;
+    private String alerta4;
+    private String alerta5;
+    private String fecha;
 
     public VentanaRegistroDeEntrada(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo) {
         initComponents();
@@ -50,7 +53,10 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
         //agrego las ventanas internas
         jDesktopPane1.add(ventanaCrearCliente);
         jDesktopPane1.add(ventanaCrearVehiculo);
-        
+        //idioma
+        alerta4="Seleccione un Vehiculo o Registre uno nuevo ";
+        alerta5="El ticket se ha registrado con exito";
+        fecha="Fecha:";
         
     }
     //getter y setter
@@ -84,6 +90,9 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
    jLabelTitulo.setText(mensaje.getString("tituloR"));
    labelDatos.setText(mensaje.getString("datosCliente"));
    jTextFieldPlaca.setText(mensaje.getString("elegirVehiculo"));
+   alerta4=mensaje.getString("alerta4");
+   alerta5=mensaje.getString("mensaje5");
+   fecha=mensaje.getString("fecha");
         if (ventanaCrearCliente  != null) {
             ventanaCrearCliente.setMensaje(mensaje);
         ventanaCrearCliente.cambiarIdioma(idioma, localizacion);
@@ -419,11 +428,11 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
     private void jButtonRegistrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarTicketActionPerformed
 
         if (jTextFieldPlaca.getText().equals("Seleccione un vehiculo")) {
-            JOptionPane.showMessageDialog(this, "Seleccione un Vehiculo o Registre uno nuevo");
+            JOptionPane.showMessageDialog(this, alerta4);
         } else {
             jTextFieldFechaDeIngreso.setText(controladorTicket.obtenerFechaActual().toString());
             controladorTicket.crear(LocalDateTime.parse(jTextFieldFechaDeIngreso.getText()), controladorVehiculo.buscar(jTextFieldPlaca.getText()));
-            JOptionPane.showMessageDialog(this, "El ticket se ha registrado con exito" + "\nFecha:" + jTextFieldFechaDeIngreso.getText());
+            JOptionPane.showMessageDialog(this, alerta5 +" "+ fecha + jTextFieldFechaDeIngreso.getText());
             limpiar();
         }
     }//GEN-LAST:event_jButtonRegistrarTicketActionPerformed
@@ -463,8 +472,6 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
         jTextFieldFechaDeIngreso.setText("");
         jTextFieldNombre.setText("");
         jTextFieldNumeroDeTicket.setText("");
-        
-        jTextFieldPlaca.setText("Seleccione un vehiculo");
         jTextFieldTelefono.setText("");
         jTextFieldNumeroDeTicket.setText(controladorTicket.obtenerSiguienteNumero() + "");
 
