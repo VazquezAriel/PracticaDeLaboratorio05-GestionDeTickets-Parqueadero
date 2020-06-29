@@ -66,54 +66,55 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaRegistroDeEntrada = new VentanaRegistroDeEntrada(controladorCliente, controladorTicket, controladorVehiculo);
         ventanaRegistroDeSalida = new VentanaRegistroDeSalida(controladorTicket);
         ventanaCrearVehiculo = new VentanaCrearVehiculo(ventanaRegistroDeEntrada, controladorVehiculo, controladorCliente);
-        ventanaCrearCliente= new VentanaCrearCliente(ventanaRegistroDeEntrada, controladorCliente);
+        ventanaCrearCliente = new VentanaCrearCliente(ventanaRegistroDeEntrada, controladorCliente);
 
         //Agregar las ventanas internas
         jDesktopPane1.add(ventanaListarTickets);
         jDesktopPane1.add(ventanaRegistroDeEntrada);
         jDesktopPane1.add(ventanaRegistroDeSalida);
-        
+
         //mensajes
         localizacion = new Locale("es", "EC");
         mensaje = ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
-        
+
     }
+
     public void cambiarIdioma(String idioma, String localidad) {
         localizacion = new Locale(idioma, localidad);
-       mensaje = ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes",localizacion);
-    jButtonListarTickets.setText(mensaje.getString("listarTickets"));
-    jButtonRegistrarEntrada.setText(mensaje.getString("registrarEntrada"));
-    jButtonRegistrarSalida.setText(mensaje.getString("registrarSalida"));
-    jLabelTitulo.setText(mensaje.getString("titulo"));
-    jMenuAjustes.setText(mensaje.getString("ajustes"));
-    jMenuIdioma.setText(mensaje.getString("idioma"));
-    jMenuInicio.setText(mensaje.getString("inicio"));
-    jMenuItemCerrar.setText(mensaje.getString("cerrar"));
-    jMenuItemClientes.setText(mensaje.getString("clientes"));
-    jMenuItemEspañol.setText(mensaje.getString("español"));
-    jMenuItemIngles.setText(mensaje.getString("ingles"));
-    jMenuItemIniciarSecion.setText(mensaje.getString("iniciarSesion"));
-    jMenuItemRestaurar.setText(mensaje.getString("restaurar"));
-    jMenuItemTickets.setText(mensaje.getString("tickets"));
-    jMenuItemVehiculos.setText(mensaje.getString("vehiculos"));
-    jMenuRegistro.setText(mensaje.getString("registro"));
-    jMenuColor.setText(mensaje.getString("cambiarColorDelFondo"));
-    rbCian.setText(mensaje.getString("cian"));
-    rbGris.setText(mensaje.getString("gris"));
-    rbMagenta.setText(mensaje.getString("magenta"));
-    if(ventanaRegistroDeEntrada  != null ){
-    ventanaRegistroDeEntrada.setMensaje(mensaje);
-    ventanaRegistroDeEntrada.cambiarIdioma(idioma, localidad);
-    ventanaRegistroDeSalida.setMensaje(mensaje);
-    ventanaRegistroDeSalida.cambiarIdioma(idioma, localidad);
-    ventanaListarTickets.setMensaje(mensaje);
-    ventanaListarTickets.cambiarIdioma(idioma, localidad);
-    ventanaCrearVehiculo.setMensaje(mensaje);
-    ventanaCrearVehiculo.cambiarIdioma(idioma, localidad);
-    ventanaCrearCliente.setMensaje(mensaje);
-    ventanaCrearCliente.cambiarIdioma(idioma, localidad);
-   
-    }
+        mensaje = ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
+        jButtonListarTickets.setText(mensaje.getString("listarTickets"));
+        jButtonRegistrarEntrada.setText(mensaje.getString("registrarEntrada"));
+        jButtonRegistrarSalida.setText(mensaje.getString("registrarSalida"));
+        jLabelTitulo.setText(mensaje.getString("titulo"));
+        jMenuAjustes.setText(mensaje.getString("ajustes"));
+        jMenuIdioma.setText(mensaje.getString("idioma"));
+        jMenuInicio.setText(mensaje.getString("inicio"));
+        jMenuItemCerrar.setText(mensaje.getString("cerrar"));
+        jMenuItemClientes.setText(mensaje.getString("clientes"));
+        jMenuItemEspañol.setText(mensaje.getString("español"));
+        jMenuItemIngles.setText(mensaje.getString("ingles"));
+        jMenuItemIniciarSecion.setText(mensaje.getString("iniciarSesion"));
+        jMenuItemRestaurar.setText(mensaje.getString("restaurar"));
+        jMenuItemTickets.setText(mensaje.getString("tickets"));
+        jMenuItemVehiculos.setText(mensaje.getString("vehiculos"));
+        jMenuRegistro.setText(mensaje.getString("registro"));
+        jMenuColor.setText(mensaje.getString("cambiarColorDelFondo"));
+        rbCian.setText(mensaje.getString("cian"));
+        rbGris.setText(mensaje.getString("gris"));
+        rbMagenta.setText(mensaje.getString("magenta"));
+        if (ventanaRegistroDeEntrada != null) {
+            ventanaRegistroDeEntrada.setMensaje(mensaje);
+            ventanaRegistroDeEntrada.cambiarIdioma(idioma, localidad);
+            ventanaRegistroDeSalida.setMensaje(mensaje);
+            ventanaRegistroDeSalida.cambiarIdioma(idioma, localidad);
+            ventanaListarTickets.setMensaje(mensaje);
+            ventanaListarTickets.cambiarIdioma(idioma, localidad);
+            ventanaCrearVehiculo.setMensaje(mensaje);
+            ventanaCrearVehiculo.cambiarIdioma(idioma, localidad);
+            ventanaCrearCliente.setMensaje(mensaje);
+            ventanaCrearCliente.cambiarIdioma(idioma, localidad);
+
+        }
     }
 
     /**
@@ -380,32 +381,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void rbCianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCianActionPerformed
         jPanelPrincipal.setBackground(Color.CYAN);
-        
+
     }//GEN-LAST:event_rbCianActionPerformed
 
     private void rbGrisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbGrisActionPerformed
         jPanelPrincipal.setBackground(Color.GRAY);
-        
+
     }//GEN-LAST:event_rbGrisActionPerformed
 
     private void rbMagentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMagentaActionPerformed
         jPanelPrincipal.setBackground(Color.MAGENTA);
-        
+
     }//GEN-LAST:event_rbMagentaActionPerformed
 
     private void jMenuItemRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRestaurarActionPerformed
         jPanelPrincipal.setBackground(new Color(12, 131, 131));
-        
+
     }//GEN-LAST:event_jMenuItemRestaurarActionPerformed
 
     private void jMenuItemEspañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEspañolActionPerformed
-       localizacion = new Locale("es", "EC");
-         this.cambiarIdioma("es","EC");
+        localizacion = new Locale("es", "EC");
+        this.cambiarIdioma("es", "EC");
     }//GEN-LAST:event_jMenuItemEspañolActionPerformed
 
     private void jMenuItemInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInglesActionPerformed
-     localizacion = new Locale("en", "UK");
-         this.cambiarIdioma("en","UK");
+        localizacion = new Locale("en", "UK");
+        this.cambiarIdioma("en", "UK");
     }//GEN-LAST:event_jMenuItemInglesActionPerformed
 
     /**

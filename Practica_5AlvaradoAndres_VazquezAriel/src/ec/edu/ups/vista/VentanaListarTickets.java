@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -61,7 +62,12 @@ public class VentanaListarTickets extends javax.swing.JInternalFrame {
         jLabelTelefono1.setText(mensaje.getString("telefono"));
         labelDatosC.setText(mensaje.getString("datosCliente"));
         labelDatosV.setText(mensaje.getString("datosVehiculo"));
-        
+        TableColumnModel modelo = jTableTickets.getColumnModel();
+        modelo.getColumn(0).setHeaderValue(mensaje.getString("numero"));
+        modelo.getColumn(1).setHeaderValue(mensaje.getString("vehiculoVS"));
+        modelo.getColumn(2).setHeaderValue(mensaje.getString("fechaDeIngreso"));
+        modelo.getColumn(3).setHeaderValue(mensaje.getString("fechaDeSalida"));
+        modelo.getColumn(3).setHeaderValue(mensaje.getString("total"));
 
     }
 

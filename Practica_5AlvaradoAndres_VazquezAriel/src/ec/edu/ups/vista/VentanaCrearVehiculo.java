@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -22,7 +23,7 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
 
     //VentanaPrincipal
     VentanaRegistroDeEntrada ventanaRegistroDeEntrada;
-    
+
     //Controladores
     private ControladorCliente controladorCliente;
     private ControladorVehiculo controladorVehiculo;
@@ -31,13 +32,13 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
     private ResourceBundle mensaje;
     //String
     private String alerta;
-    
+
     /**
      * Creates new form VentanaCrearVehiculo
      */
     public VentanaCrearVehiculo(VentanaRegistroDeEntrada ventanaRegistroDeEntrada, ControladorVehiculo controladorVehiculo, ControladorCliente controladorCliente) {
         initComponents();
-        
+
         //Ventana
         this.ventanaRegistroDeEntrada = ventanaRegistroDeEntrada;
 
@@ -45,10 +46,9 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
         this.controladorCliente = controladorCliente;
         this.controladorVehiculo = controladorVehiculo;
         //idioma
-       alerta="Faltan datos por ingresar";
+        alerta = "Faltan datos por ingresar";
     }
 
-    
     public Locale getLocalizacion() {
         return localizacion;
     }
@@ -64,18 +64,25 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
     public void setMensaje(ResourceBundle mensaje) {
         this.mensaje = mensaje;
     }
-public void cambiarIdioma(String idioma, String localizacion){
-     jLabelMarca1.setText(mensaje.getString("marca"));
-     jLabelModelo.setText(mensaje.getString("modelo"));
-     jLabelCliente.setText(mensaje.getString("clienteVS"));
-     jLabelPlaca.setText(mensaje.getString("placa"));
-     jLabelTitulo.setText(mensaje.getString("tituloVC"));
-     jButtonCreaCliente.setText(mensaje.getString("botonCrear"));
-     jButtonCancelar.setText(mensaje.getString("cancelar"));
-     jButtonRegistrarVehiculo.setText(mensaje.getString("registrarVehiculo"));
-     jTextFieldCliente.setText(mensaje.getString("elegirCliente"));
-     alerta=mensaje.getString("alerta");
+
+    public void cambiarIdioma(String idioma, String localizacion) {
+        jLabelMarca1.setText(mensaje.getString("marca"));
+        jLabelModelo.setText(mensaje.getString("modelo"));
+        jLabelCliente.setText(mensaje.getString("clienteVS"));
+        jLabelPlaca.setText(mensaje.getString("placa"));
+        jLabelTitulo.setText(mensaje.getString("tituloVC"));
+        jButtonCreaCliente.setText(mensaje.getString("botonCrear"));
+        jButtonCancelar.setText(mensaje.getString("cancelar"));
+        jButtonRegistrarVehiculo.setText(mensaje.getString("registrarVehiculo"));
+        jTextFieldCliente.setText(mensaje.getString("elegirCliente"));
+        alerta = mensaje.getString("alerta");
+        TableColumnModel modelo = jTableClientes.getColumnModel();
+        modelo.getColumn(0).setHeaderValue(mensaje.getString("cedula"));
+        modelo.getColumn(1).setHeaderValue(mensaje.getString("nombre"));
+        modelo.getColumn(2).setHeaderValue(mensaje.getString("direccion"));
+        modelo.getColumn(3).setHeaderValue(mensaje.getString("telefono"));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -306,7 +313,7 @@ public void cambiarIdioma(String idioma, String localizacion){
         if (jTextFieldPlaca.getText().equals("") || jTextFieldMarca.getText().equals("")
                 || jTextFieldModelo.getText().equals("") || jTextFieldCliente.getText().equals("Seleccione un Cliente")) {
             JOptionPane.showMessageDialog(this, alerta);
-            
+
         } else {
             Cliente cliente = controladorCliente.buscar(jTextFieldCliente.getText());
             controladorVehiculo.crear(jTextFieldPlaca.getText(), jTextFieldMarca.getText(), jTextFieldModelo.getText(), cliente);
@@ -322,13 +329,13 @@ public void cambiarIdioma(String idioma, String localizacion){
         int filaSeleccionada = jTableClientes.getSelectedRow();
         if (filaSeleccionada >= 0) {
             String cedulaCliente = jTableClientes.getValueAt(filaSeleccionada, 0).toString();
-            jTextFieldCliente.setText(cedulaCliente);    
+            jTextFieldCliente.setText(cedulaCliente);
         }
     }//GEN-LAST:event_jTableClientesMouseClicked
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         cargarDatosTablaClientes();
-        
+
     }//GEN-LAST:event_formInternalFrameActivated
 
     public void cargarDatosTablaClientes() {
@@ -344,14 +351,14 @@ public void cambiarIdioma(String idioma, String localizacion){
     public JTextField getjTextFieldCliente() {
         return jTextFieldCliente;
     }
-    
+
     public void limpiar() {
         jTextFieldCliente.setText("Seleccione un Cliente");
         jTextFieldMarca.setText("");
         jTextFieldModelo.setText("");
         jTextFieldPlaca.setText("");
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonCreaCliente;

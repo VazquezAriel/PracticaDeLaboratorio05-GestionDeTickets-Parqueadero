@@ -16,6 +16,9 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -54,10 +57,10 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
         jDesktopPane1.add(ventanaCrearCliente);
         jDesktopPane1.add(ventanaCrearVehiculo);
         //idioma
-        alerta4="Seleccione un Vehiculo o Registre uno nuevo ";
-        alerta5="El ticket se ha registrado con exito";
-        fecha="Fecha:";
-        
+        alerta4 = "Seleccione un Vehiculo o Registre uno nuevo ";
+        alerta5 = "El ticket se ha registrado con exito";
+        fecha = "Fecha:";
+
     }
     //getter y setter
 
@@ -76,33 +79,38 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
     public void setMensaje(ResourceBundle mensaje) {
         this.mensaje = mensaje;
     }
-    
-    public void cambiarIdioma(String idioma, String localizacion){
-   jButtonCrearVehiculo.setText(mensaje.getString("crearVehiculo"));
-   jButtonRegistrarTicket.setText(mensaje.getString("registrarTicket"));
-   jLabelCedula.setText(mensaje.getString("cedula"));
-   jLabelDireccion.setText(mensaje.getString("direccion"));
-   jLabelFechaDeIngreso.setText(mensaje.getString("fechaDeIngreso"));
-   jLabelNombre.setText(mensaje.getString("nombre"));
-   jLabelNumeroDeTicket.setText(mensaje.getString("numeroDeTicket"));
-   jLabelPlaca.setText(mensaje.getString("placa"));
-   jLabelTelefono.setText(mensaje.getString("telefono"));
-   jLabelTitulo.setText(mensaje.getString("tituloR"));
-   labelDatos.setText(mensaje.getString("datosCliente"));
-   jTextFieldPlaca.setText(mensaje.getString("elegirVehiculo"));
-   alerta4=mensaje.getString("alerta4");
-   alerta5=mensaje.getString("alerta5");
-   fecha=mensaje.getString("fecha");
-        if (ventanaCrearCliente  != null) {
+
+    public void cambiarIdioma(String idioma, String localizacion) {
+        jButtonCrearVehiculo.setText(mensaje.getString("crearVehiculo"));
+        jButtonRegistrarTicket.setText(mensaje.getString("registrarTicket"));
+        jLabelCedula.setText(mensaje.getString("cedula"));
+        jLabelDireccion.setText(mensaje.getString("direccion"));
+        jLabelFechaDeIngreso.setText(mensaje.getString("fechaDeIngreso"));
+        jLabelNombre.setText(mensaje.getString("nombre"));
+        jLabelNumeroDeTicket.setText(mensaje.getString("numeroDeTicket"));
+        jLabelPlaca.setText(mensaje.getString("placa"));
+        jLabelTelefono.setText(mensaje.getString("telefono"));
+        jLabelTitulo.setText(mensaje.getString("tituloR"));
+        labelDatos.setText(mensaje.getString("datosCliente"));
+        jTextFieldPlaca.setText(mensaje.getString("elegirVehiculo"));
+        alerta4 = mensaje.getString("alerta4");
+        alerta5 = mensaje.getString("alerta5");
+        fecha = mensaje.getString("fecha");
+        
+        TableColumnModel modelo = jTableVehiculos.getColumnModel();
+        modelo.getColumn(0).setHeaderValue(mensaje.getString("placa"));
+        modelo.getColumn(1).setHeaderValue(mensaje.getString("marca"));
+        modelo.getColumn(2).setHeaderValue(mensaje.getString("modelo"));
+        modelo.getColumn(3).setHeaderValue(mensaje.getString("clienteVS"));
+        
+        if (ventanaCrearCliente != null) {
             ventanaCrearCliente.setMensaje(mensaje);
-        ventanaCrearCliente.cambiarIdioma(idioma, localizacion);
-        ventanaCrearVehiculo.setMensaje(mensaje);
-   ventanaCrearVehiculo.cambiarIdioma(idioma, localizacion);    
+            ventanaCrearCliente.cambiarIdioma(idioma, localizacion);
+            ventanaCrearVehiculo.setMensaje(mensaje);
+            ventanaCrearVehiculo.cambiarIdioma(idioma, localizacion);
         }
-   
-   
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -427,13 +435,13 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
 
     private void jButtonRegistrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarTicketActionPerformed
 
-        if (jTextFieldPlaca.getText().equals("Seleccione un vehiculo")||jTextFieldPlaca.getText().equals("Select a vehicle")||jTextFieldCedula.getText().equals("") || jTextFieldNombre.getText().equals("")
+        if (jTextFieldPlaca.getText().equals("Seleccione un vehiculo") || jTextFieldPlaca.getText().equals("Select a vehicle") || jTextFieldCedula.getText().equals("") || jTextFieldNombre.getText().equals("")
                 || jTextFieldDireccion.getText().equals("") || jTextFieldTelefono.getText().equals("")) {
             JOptionPane.showMessageDialog(this, alerta4);
         } else {
             jTextFieldFechaDeIngreso.setText(controladorTicket.obtenerFechaActual().toString());
             controladorTicket.crear(LocalDateTime.parse(jTextFieldFechaDeIngreso.getText()), controladorVehiculo.buscar(jTextFieldPlaca.getText()));
-            JOptionPane.showMessageDialog(this, alerta5 +" "+ fecha + jTextFieldFechaDeIngreso.getText());
+            JOptionPane.showMessageDialog(this, alerta5 + " " + fecha + jTextFieldFechaDeIngreso.getText());
             limpiar();
         }
     }//GEN-LAST:event_jButtonRegistrarTicketActionPerformed
