@@ -26,7 +26,7 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     //idioma
     private Locale localizacion;
     private ResourceBundle mensaje;
-    
+    private String alerta;
     public VentanaCrearCliente(VentanaRegistroDeEntrada ventanaRegistroDeEntrada, ControladorCliente controladorCliente) {
         initComponents();
         
@@ -35,6 +35,9 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
         
         //Controlador
         this.controladorCliente = controladorCliente;
+        
+        //idioma
+         alerta="Faltan datos por ingresar";
     }
 
     
@@ -63,6 +66,7 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
      jButtonCancelar.setText(mensaje.getString("cancelar"));
      jButtonRegistrarCliente.setText(mensaje.getString("registrarCliente"));
      jLabelTitulo.setText(mensaje.getString("tituloVCC"));
+      alerta=mensaje.getString("alerta");
     }
 
     /**
@@ -207,7 +211,7 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     private void jButtonRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarClienteActionPerformed
         if (jTextFieldCedula.getText().equals("") || jTextFieldNombre.getText().equals("")
                 || jTextFieldDireccion.getText().equals("") || jTextFieldTelefono.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Faltan datos por ingresar");
+            JOptionPane.showMessageDialog(this, alerta);
         } else {
             controladorCliente.crear(jTextFieldCedula.getText(), jTextFieldNombre.getText(), jTextFieldDireccion.getText(), jTextFieldTelefono.getText());
             ventanaRegistroDeEntrada.getVentanaCrearVehiculo().setVisible(true);

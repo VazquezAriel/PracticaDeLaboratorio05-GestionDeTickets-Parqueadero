@@ -29,6 +29,9 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
 //idioma
     private Locale localizacion;
     private ResourceBundle mensaje;
+    //String
+    private String alerta;
+    
     /**
      * Creates new form VentanaCrearVehiculo
      */
@@ -41,7 +44,8 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
         //Controladores
         this.controladorCliente = controladorCliente;
         this.controladorVehiculo = controladorVehiculo;
-
+        //idioma
+       alerta="Faltan datos por ingresar";
     }
 
     
@@ -70,6 +74,7 @@ public void cambiarIdioma(String idioma, String localizacion){
      jButtonCancelar.setText(mensaje.getString("cancelar"));
      jButtonRegistrarVehiculo.setText(mensaje.getString("registrarVehiculo"));
      jTextFieldCliente.setText(mensaje.getString("elegirCliente"));
+     alerta=mensaje.getString("alerta");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -300,7 +305,7 @@ public void cambiarIdioma(String idioma, String localizacion){
     private void jButtonRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarVehiculoActionPerformed
         if (jTextFieldPlaca.getText().equals("") || jTextFieldMarca.getText().equals("")
                 || jTextFieldModelo.getText().equals("") || jTextFieldCliente.getText().equals("Seleccione un Cliente")) {
-            JOptionPane.showMessageDialog(this, "Faltan datos por ingresar");
+            JOptionPane.showMessageDialog(this, alerta);
             
         } else {
             Cliente cliente = controladorCliente.buscar(jTextFieldCliente.getText());
