@@ -91,7 +91,7 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
    labelDatos.setText(mensaje.getString("datosCliente"));
    jTextFieldPlaca.setText(mensaje.getString("elegirVehiculo"));
    alerta4=mensaje.getString("alerta4");
-   alerta5=mensaje.getString("mensaje5");
+   alerta5=mensaje.getString("alerta5");
    fecha=mensaje.getString("fecha");
         if (ventanaCrearCliente  != null) {
             ventanaCrearCliente.setMensaje(mensaje);
@@ -427,7 +427,8 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
 
     private void jButtonRegistrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarTicketActionPerformed
 
-        if (jTextFieldPlaca.getText().equals("Seleccione un vehiculo")) {
+        if (jTextFieldPlaca.getText().equals("Seleccione un vehiculo")||jTextFieldPlaca.getText().equals("Select a vehicle")||jTextFieldCedula.getText().equals("") || jTextFieldNombre.getText().equals("")
+                || jTextFieldDireccion.getText().equals("") || jTextFieldTelefono.getText().equals("")) {
             JOptionPane.showMessageDialog(this, alerta4);
         } else {
             jTextFieldFechaDeIngreso.setText(controladorTicket.obtenerFechaActual().toString());
