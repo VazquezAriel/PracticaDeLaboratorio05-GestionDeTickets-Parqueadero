@@ -10,6 +10,8 @@ import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Ticket;
 import ec.edu.ups.modelo.Vehiculo;
 import java.time.LocalDateTime;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,12 +21,49 @@ import javax.swing.JOptionPane;
 public class VentanaRegistroDeSalida extends javax.swing.JInternalFrame {
 
     private ControladorTicket controladorTicket;
+    //idioma
+    private Locale localizacion;
+    private ResourceBundle mensaje;
 
     public VentanaRegistroDeSalida(ControladorTicket controladorTicket) {
         initComponents();
 
         //Controlador
         this.controladorTicket = controladorTicket;
+    }
+
+    public Locale getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(Locale localizacion) {
+        this.localizacion = localizacion;
+    }
+
+    public ResourceBundle getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(ResourceBundle mensaje) {
+        this.mensaje = mensaje;
+    }
+    public void cambiarIdioma(String idioma, String localizacion){
+   jButtonCalcular.setText(mensaje.getString("calcular"));
+   jButtonLimpiar.setText(mensaje.getString("limpiar"));
+     jLabelCedula4.setText(mensaje.getString("total"));
+    jLabelDireccion.setText(mensaje.getString("direccion"));
+     jLabelFechaEntrada.setText(mensaje.getString("fechaEntrada"));
+     jLabelFechaSalida.setText(mensaje.getString("fechaSalida"));
+     jLabelFraccciones.setText(mensaje.getString("fracciones"));
+     jLabelMarca.setText(mensaje.getString("marca"));
+     jLabelModelo.setText(mensaje.getString("modelo"));
+     jLabelNombre.setText(mensaje.getString("nombre"));
+    jLabelNumeroDeTicket.setText(mensaje.getString("numeroDeTicket"));
+     jLabelPlaca.setText(mensaje.getString("placa"));
+     jLabelTelefono.setText(mensaje.getString("telefono"));
+     jLabelTiempo.setText(mensaje.getString("tiempo"));
+     jLabelTitulo.setText(mensaje.getString("tituloVS"));
+     jLabelCedula1.setText(mensaje.getString("cedula"));
     }
 
     /**

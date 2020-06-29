@@ -9,6 +9,8 @@ import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Ticket;
 import ec.edu.ups.modelo.Vehiculo;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,12 +20,45 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaListarTickets extends javax.swing.JInternalFrame {
 
     private ControladorTicket controladorTicket;
-
+    //idioma
+    private Locale localizacion;
+    private ResourceBundle mensaje;
+    
+    
     public VentanaListarTickets(ControladorTicket controladorTicket) {
         initComponents();
 
         //Controlador
         this.controladorTicket = controladorTicket;
+    }
+
+    public Locale getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(Locale localizacion) {
+        this.localizacion = localizacion;
+    }
+
+    public ResourceBundle getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(ResourceBundle mensaje) {
+        this.mensaje = mensaje;
+    }
+     public void cambiarIdioma(String idioma, String localizacion){
+         
+     jLabelCedula1.setText(mensaje.getString("cedula"));
+     jLabelMarca.setText(mensaje.getString("marca"));
+     jLabelModelo.setText(mensaje.getString("modelo"));
+     jLabelCliente.setText(mensaje.getString("clienteVS"));
+     jLabelDireccion1.setText(mensaje.getString("direccion"));
+     jLabelNombre1.setText(mensaje.getString("nombre"));
+     jLabelPlaca.setText(mensaje.getString("placa"));
+  jLabelTelefono1.setText(mensaje.getString("telefono"));
+     
+     
     }
 
     /**
@@ -39,7 +74,7 @@ public class VentanaListarTickets extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableTickets = new javax.swing.JTable();
         jPanelDatosVehiculo = new javax.swing.JPanel();
-        jLabelCedula = new javax.swing.JLabel();
+        jLabelPlaca = new javax.swing.JLabel();
         jLabelMarca = new javax.swing.JLabel();
         jLabelModelo = new javax.swing.JLabel();
         jLabelCliente = new javax.swing.JLabel();
@@ -128,8 +163,8 @@ public class VentanaListarTickets extends javax.swing.JInternalFrame {
         jPanelDatosVehiculo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Datos del vehiculo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial Narrow", 0, 22))); // NOI18N
         jPanelDatosVehiculo.setMaximumSize(new java.awt.Dimension(0, 0));
 
-        jLabelCedula.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jLabelCedula.setText("Placa:");
+        jLabelPlaca.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jLabelPlaca.setText("Placa:");
 
         jLabelMarca.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
         jLabelMarca.setText("Marca:");
@@ -164,7 +199,7 @@ public class VentanaListarTickets extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextFieldCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelDatosVehiculoLayout.createSequentialGroup()
-                        .addComponent(jLabelCedula)
+                        .addComponent(jLabelPlaca)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextFieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelDatosVehiculoLayout.createSequentialGroup()
@@ -182,7 +217,7 @@ public class VentanaListarTickets extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDatosVehiculoLayout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(jPanelDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCedula)
+                    .addComponent(jLabelPlaca)
                     .addComponent(jTextFieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -300,7 +335,6 @@ public class VentanaListarTickets extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jPanelDatosVehiculo.getAccessibleContext().setAccessibleName("Datos del vehiculo");
         jPanelDatosVehiculo.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -363,13 +397,13 @@ public class VentanaListarTickets extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabelCedula;
     private javax.swing.JLabel jLabelCedula1;
     private javax.swing.JLabel jLabelCliente;
     private javax.swing.JLabel jLabelDireccion1;
     private javax.swing.JLabel jLabelMarca;
     private javax.swing.JLabel jLabelModelo;
     private javax.swing.JLabel jLabelNombre1;
+    private javax.swing.JLabel jLabelPlaca;
     private javax.swing.JLabel jLabelTelefono1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelDatosCliente1;

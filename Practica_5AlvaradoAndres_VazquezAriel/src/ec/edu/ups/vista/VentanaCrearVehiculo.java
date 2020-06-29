@@ -8,6 +8,8 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorVehiculo;
 import ec.edu.ups.modelo.Cliente;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +26,9 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
     //Controladores
     private ControladorCliente controladorCliente;
     private ControladorVehiculo controladorVehiculo;
-
+//idioma
+    private Locale localizacion;
+    private ResourceBundle mensaje;
     /**
      * Creates new form VentanaCrearVehiculo
      */
@@ -40,6 +44,33 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
 
     }
 
+    
+    public Locale getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(Locale localizacion) {
+        this.localizacion = localizacion;
+    }
+
+    public ResourceBundle getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(ResourceBundle mensaje) {
+        this.mensaje = mensaje;
+    }
+public void cambiarIdioma(String idioma, String localizacion){
+     jLabelMarca1.setText(mensaje.getString("marca"));
+     jLabelModelo.setText(mensaje.getString("modelo"));
+     jLabelCliente.setText(mensaje.getString("clienteVS"));
+     jLabelPlaca.setText(mensaje.getString("placa"));
+     jLabelTitulo.setText(mensaje.getString("tituloVC"));
+     jButtonCreaCliente.setText(mensaje.getString("botonCrear"));
+     jButtonCancelar.setText(mensaje.getString("cancelar"));
+     jButtonRegistrarVehiculo.setText(mensaje.getString("registrarVehiculo"));
+     jTextFieldCliente.setText(mensaje.getString("elegirCliente"));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,7 +86,7 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
         jTableClientes = new javax.swing.JTable();
         jLabelPlaca = new javax.swing.JLabel();
         jLabelModelo = new javax.swing.JLabel();
-        jLabelMarca = new javax.swing.JLabel();
+        jLabelCliente = new javax.swing.JLabel();
         jLabelMarca1 = new javax.swing.JLabel();
         jTextFieldCliente = new javax.swing.JTextField();
         jTextFieldModelo = new javax.swing.JTextField();
@@ -129,8 +160,8 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
         jLabelModelo.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
         jLabelModelo.setText("Modelo:");
 
-        jLabelMarca.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
-        jLabelMarca.setText("Cliente:");
+        jLabelCliente.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
+        jLabelCliente.setText("Cliente:");
 
         jLabelMarca1.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
         jLabelMarca1.setText("Marca:");
@@ -184,7 +215,7 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
                             .addComponent(jButtonCreaCliente))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelModelo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelMarca1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelPlaca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -230,7 +261,7 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCreaCliente))
                 .addGap(18, 18, 18)
@@ -321,7 +352,7 @@ public class VentanaCrearVehiculo extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonCreaCliente;
     private javax.swing.JButton jButtonRegistrarVehiculo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelMarca;
+    private javax.swing.JLabel jLabelCliente;
     private javax.swing.JLabel jLabelMarca1;
     private javax.swing.JLabel jLabelModelo;
     private javax.swing.JLabel jLabelPlaca;

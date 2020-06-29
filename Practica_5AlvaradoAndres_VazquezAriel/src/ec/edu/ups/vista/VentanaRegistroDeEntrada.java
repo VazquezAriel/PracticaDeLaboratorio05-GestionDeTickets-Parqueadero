@@ -11,6 +11,8 @@ import ec.edu.ups.controlador.ControladorVehiculo;
 import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Vehiculo;
 import java.time.LocalDateTime;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +31,9 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
     private ControladorCliente controladorCliente;
     private ControladorVehiculo controladorVehiculo;
     private ControladorTicket controladorTicket;
+    //idioma
+    private Locale localizacion;
+    private ResourceBundle mensaje;
 
     public VentanaRegistroDeEntrada(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo) {
         initComponents();
@@ -45,7 +50,50 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
         //agrego las ventanas internas
         jDesktopPane1.add(ventanaCrearCliente);
         jDesktopPane1.add(ventanaCrearVehiculo);
+        
+        
     }
+    //getter y setter
+
+    public Locale getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(Locale localizacion) {
+        this.localizacion = localizacion;
+    }
+
+    public ResourceBundle getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(ResourceBundle mensaje) {
+        this.mensaje = mensaje;
+    }
+    
+    public void cambiarIdioma(String idioma, String localizacion){
+   jButtonCrearVehiculo.setText(mensaje.getString("crearVehiculo"));
+   jButtonRegistrarTicket.setText(mensaje.getString("registrarTicket"));
+   jLabelCedula.setText(mensaje.getString("cedula"));
+   jLabelDireccion.setText(mensaje.getString("direccion"));
+   jLabelFechaDeIngreso.setText(mensaje.getString("fechaDeIngreso"));
+   jLabelNombre.setText(mensaje.getString("nombre"));
+   jLabelNumeroDeTicket.setText(mensaje.getString("numeroDeTicket"));
+   jLabelPlaca.setText(mensaje.getString("placa"));
+   jLabelTelefono.setText(mensaje.getString("telefono"));
+   jLabelTitulo.setText(mensaje.getString("tituloR"));
+   labelDatos.setText(mensaje.getString("datosCliente"));
+   jTextFieldPlaca.setText(mensaje.getString("elegirVehiculo"));
+        if (ventanaCrearCliente  != null) {
+            ventanaCrearCliente.setMensaje(mensaje);
+        ventanaCrearCliente.cambiarIdioma(idioma, localizacion);
+        ventanaCrearVehiculo.setMensaje(mensaje);
+   ventanaCrearVehiculo.cambiarIdioma(idioma, localizacion);    
+        }
+   
+   
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,6 +124,7 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
         jTextFieldTelefono = new javax.swing.JTextField();
         jTextFieldDireccion = new javax.swing.JTextField();
         jTextFieldCedula = new javax.swing.JTextField();
+        labelDatos = new javax.swing.JLabel();
         jButtonRegistrarTicket = new javax.swing.JButton();
         jButtonCrearVehiculo = new javax.swing.JButton();
 
@@ -157,7 +206,7 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
         jLabelTitulo.setText("Registrar Entrada");
 
         jPanelDatosCliente.setBackground(new java.awt.Color(12, 131, 131));
-        jPanelDatosCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Datos del cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial Narrow", 0, 22))); // NOI18N
+        jPanelDatosCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial Narrow", 0, 22))); // NOI18N
         jPanelDatosCliente.setMaximumSize(new java.awt.Dimension(0, 0));
 
         jLabelCedula.setFont(new java.awt.Font("Arial Narrow", 0, 18)); // NOI18N
@@ -184,6 +233,9 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
         jTextFieldCedula.setEditable(false);
         jTextFieldCedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        labelDatos.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        labelDatos.setText("Datos del Cliente");
+
         javax.swing.GroupLayout jPanelDatosClienteLayout = new javax.swing.GroupLayout(jPanelDatosCliente);
         jPanelDatosCliente.setLayout(jPanelDatosClienteLayout);
         jPanelDatosClienteLayout.setHorizontalGroup(
@@ -208,11 +260,17 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                         .addComponent(jTextFieldDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPanelDatosClienteLayout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(labelDatos)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDatosClienteLayout.setVerticalGroup(
             jPanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDatosClienteLayout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelDatos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelDatosClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCedula)
                     .addComponent(jTextFieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -306,7 +364,7 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
                         .addComponent(jPanelDatosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPaneTablaVehiculos1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jDesktopPane1.setLayer(jPanelPrincipal, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -405,6 +463,7 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
         jTextFieldFechaDeIngreso.setText("");
         jTextFieldNombre.setText("");
         jTextFieldNumeroDeTicket.setText("");
+        
         jTextFieldPlaca.setText("Seleccione un vehiculo");
         jTextFieldTelefono.setText("");
         jTextFieldNumeroDeTicket.setText(controladorTicket.obtenerSiguienteNumero() + "");
@@ -434,5 +493,6 @@ public class VentanaRegistroDeEntrada extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFieldNumeroDeTicket;
     private javax.swing.JTextField jTextFieldPlaca;
     private javax.swing.JTextField jTextFieldTelefono;
+    private javax.swing.JLabel labelDatos;
     // End of variables declaration//GEN-END:variables
 }

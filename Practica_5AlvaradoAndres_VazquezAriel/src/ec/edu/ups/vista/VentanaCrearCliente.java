@@ -7,6 +7,8 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.modelo.Cliente;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +23,9 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
     
     //Controlador de Clientes
     private ControladorCliente controladorCliente;
+    //idioma
+    private Locale localizacion;
+    private ResourceBundle mensaje;
     
     public VentanaCrearCliente(VentanaRegistroDeEntrada ventanaRegistroDeEntrada, ControladorCliente controladorCliente) {
         initComponents();
@@ -30,6 +35,34 @@ public class VentanaCrearCliente extends javax.swing.JInternalFrame {
         
         //Controlador
         this.controladorCliente = controladorCliente;
+    }
+
+    
+
+    public Locale getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(Locale localizacion) {
+        this.localizacion = localizacion;
+    }
+
+    public ResourceBundle getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(ResourceBundle mensaje) {
+        this.mensaje = mensaje;
+    }
+    
+    public void cambiarIdioma(String idioma, String localizacion){
+     jLabelCedula1.setText(mensaje.getString("cedula"));
+     jLabelDireccion1.setText(mensaje.getString("direccion"));
+     jLabelNombre1.setText(mensaje.getString("nombre"));
+  jLabelTelefono1.setText(mensaje.getString("telefono"));
+     jButtonCancelar.setText(mensaje.getString("cancelar"));
+     jButtonRegistrarCliente.setText(mensaje.getString("registrarCliente"));
+     jLabelTitulo.setText(mensaje.getString("tituloVCC"));
     }
 
     /**
